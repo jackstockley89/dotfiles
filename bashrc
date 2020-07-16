@@ -2,6 +2,8 @@
 
 # Set Variables
 
+export GOPATH="${HOME}/.go"
+
 # Aliases
 
 alias hubpr='hub pull-request'
