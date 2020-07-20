@@ -3,6 +3,7 @@
 # Set Variables
 
 export GOPATH="${HOME}/.go"
+export REPO="${HOME}/repo"
 
 # Aliases
 
