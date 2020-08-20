@@ -1,7 +1,7 @@
 call plug#begin()
 if executable('go')
 	" VIM-GO PLUGIN
-	Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+	Plug 'fatih/vim-go', {  'tag': 'v1.22', 'do': ':GoUpdateBinaries' }
 endif
 
 " TERRAFORM
