@@ -16,7 +16,7 @@ alias gitcl='git clone'
 alias gits='git status'
 alias gita='git add'
 alias gitph='git push'
-alias gitphf=git push --force-with-lease'
+alias gitphf='git push --force-with-lease'
 alias gitpl='git pull'
 
 ## docker Aliases
