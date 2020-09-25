@@ -11,11 +11,14 @@ do
     echo "soft link $HOME/.$file already exists"
   else
     echo "soft link $HOME/.$file is missing"
-    DIRFILE=$(find $HOME -type f -name .$file -print)
-    if [ -f "$DIRFILE" ]; then
+    SYMDIR=$(find $HOME -type d -name .$file -print)
+    SYMFILE=$(find $HOME -type f -name .$file -print)
+    if [ -f "$SYMFILE" ]; then
       echo "replacing file for symlink"
-      rm -rf $HOME/.$file
+    elif [ -d "$SYMDIR" ]; then
+      echo "replacing directory for symlink"
     fi
+    rm -rf $HOME/.$file
     echo "creating symlink"
     ln -s $DOTFILES/$file $HOME/.$file
     echo "$HOME/.$file created"
