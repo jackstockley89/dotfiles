@@ -26,3 +26,7 @@ alias dcrc='docker-compose down; docker-compose up --build -d'
 alias lsh='ls -ltrh'
 
 ## grep Aliases
+
+## AWS Aliases
+alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config'
+alias laaops='export AWS_CONFIG_FILE=~/.aws/laa-ops/config'
