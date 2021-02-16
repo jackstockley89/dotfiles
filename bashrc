@@ -28,5 +28,5 @@ alias lsh='ls -ltrh'
 ## grep Aliases
 
 ## AWS Aliases
-alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config'
-alias laaops='export AWS_CONFIG_FILE=~/.aws/laa-ops/config'
+alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config; echo $AWS_CONFIG_FILE'
+alias laaops='export AWS_CONFIG_FILE=~/.aws/laa-ops/config; echo $AWS_CONFIG_FILE'
