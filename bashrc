@@ -5,6 +5,9 @@
 export GOPATH="${HOME}/.go"
 export REPO="${HOME}/repo"
 
+## Kubectl auto complete
+source <(kubectl completion bash)
+
 # Aliases
 ## hub Aliases
 alias hubpr='hub pull-request'
@@ -28,5 +31,9 @@ alias lsh='ls -ltrh'
 ## grep Aliases
 
 ## AWS Aliases
-alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config; echo $AWS_CONFIG_FILE'
-alias laaops='export AWS_CONFIG_FILE=~/.aws/laa-ops/config; echo $AWS_CONFIG_FILE'
+alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config; echo "AWS_CONFIG_FILE: "$AWS_CONFIG_FILE'
+alias laaops='export AWS_CONFIG_FILE=~/.aws/laa-ops/config; echo "AWS_CONFIG_FIL: "$AWS_CONFIG_FILE'
+
+## Terraform Aliases
+alias tf14='tfenv use 0.14.6; echo "Terraform Verson: "; tfenv version-name
+alias tf13='tfenv use 0.13.5; echo "Terraform Verson: "; tfenv version-name
