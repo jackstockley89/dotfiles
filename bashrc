@@ -5,6 +5,9 @@
 export GOPATH="${HOME}/.go"
 export REPO="${HOME}/repo"
 
+## Kubectl auto complete
+source <(kubectl completion bash)
+
 # Aliases
 ## hub Aliases
 alias hubpr='hub pull-request'
