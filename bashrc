@@ -35,6 +35,6 @@ alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config; echo "AWS_CONF
 alias laaops='export AWS_CONFIG_FILE=~/.aws/laa-ops/config; echo "AWS_CONFIG_FIL: "$AWS_CONFIG_FILE'
 
 ## Terraform Aliases
-alias tf15='tfenv use 0.15.0; echo "Terraform Version: "; tfenv version-name'
+alias tf155='tfenv use 0.15.5; echo "Terraform Version: "; tfenv version-name'
 alias tf146='tfenv use 0.14.6; echo "Terraform Version: "; tfenv version-name'
 alias tf135='tfenv use 0.13.5; echo "Terraform Version: "; tfenv version-name'
