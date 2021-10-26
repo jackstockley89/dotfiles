@@ -2,3 +2,7 @@ bashrc
 bash_profile
 vimrc
 vim
+launch-env.scpt
+launch-laaops-terminal.scpt
+launch-modplat-terminal.scpt
+launch-laaops.bash
