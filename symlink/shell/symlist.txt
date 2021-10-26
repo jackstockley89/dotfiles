@@ -5,4 +5,4 @@ vim
 launch-env.scpt
 launch-laaops-terminal.scpt
 launch-modplat-terminal.scpt
-launch-laaops.bash
+launch-laaops-env.bash
