@@ -1,6 +1,9 @@
 on run argList
-set argList to argList as list
-repeat with ipList in argList
+set x to argList
+set {a, b, c, d} to x
+set argIP to {a, b, c} as list
+set argENV to d as text
+repeat with ipList in argIP
     tell application "iTerm"
         tell current window
             create tab with profile "LAAOps"
@@ -10,8 +13,8 @@ repeat with ipList in argList
         end tell
         tell _new_session
             select
-            set name to ipList
-            write text "ssh " & ipList & " -i .ssh/staging-general.pem"
+            set name to argENV & " - " & ipList
+            write text "ssh " & ipList & " -i .ssh/" & argENV & "-general.pem"
         end tell
     end tell
 end repeat
