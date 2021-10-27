@@ -10,9 +10,9 @@ case "$1" in
 ebs)  echo "${1}: ${ENV}"
       cd ${scriptHome}
       if [ ${ENV} == prod ]; then
-        osascript .launch-env.scpt $ebsPRODDB $ebsPRODAPPONE $ebsPRODAPPTWO
+        osascript .launch-env.scpt $ebsPRODDB $ebsPRODAPPONE $ebsPRODAPPTWO production
       elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env.scpt $ebsPREPRODDB $ebsPREPRODAPPONE $ebsPREPRODAPPTWO
+        osascript .launch-env.scpt $ebsPREPRODDB $ebsPREPRODAPPONE $ebsPREPRODAPPTWO staging
       else
         echo "Unknown Environment"
         exit
@@ -21,9 +21,9 @@ ebs)  echo "${1}: ${ENV}"
 soa)  echo "${1}: ${ENV}"
       cd "${scriptHome}"
       if [ ${ENV} == prod ]; then
-        osascript .launch-env.scpt $soaPRODADMIN $soaPRODAPPONE $soaPRODAPPTWO $soaPRODAPPTHREE
+        osascript .launch-env.scpt $soaPRODADMIN $soaPRODAPPONE $soaPRODAPPTWO $soaPRODAPPTHREE production
       elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env.scpt $soaPREPRODADMIN $soaPREPRODAPPONE $soaPREPRODAPPTWO $soaPREPRODAPPTHREE
+        osascript .launch-env.scpt $soaPREPRODADMIN $soaPREPRODAPPONE $soaPREPRODAPPTWO $soaPREPRODAPPTHREE staging
       else
         echo "Unknown Environment"
         exit

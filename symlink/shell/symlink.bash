@@ -6,13 +6,13 @@ SYMLIST=symlist.txt
 
 for file in $(cat $SYMLIST)
 do
-  SYMLINK=$(find $HOME -type l -name .$file -print)
+  SYMLINK=$(find $HOME -maxdepth 1 -type l -name .$file -print)
   if [ -L "$SYMLINK" ]; then
     echo "soft link $HOME/.$file already exists"
   else
     echo "soft link $HOME/.$file is missing"
-    SYMDIR=$(find $HOME -type d -name .$file -print)
-    SYMFILE=$(find $HOME -type f -name .$file -print)
+    SYMDIR=$(find $HOME -maxdepth 1 -type d -name .$file -print)
+    SYMFILE=$(find $HOME -maxdepth 1 -type f -name .$file -print)
     if [ -f "$SYMFILE" ]; then
       echo "replacing file for symlink"
     elif [ -d "$SYMDIR" ]; then
