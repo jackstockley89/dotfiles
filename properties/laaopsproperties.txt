@@ -1,0 +1,61 @@
+## EBS
+### PROD
+ebs.prod.db=<INPUT>
+ebs.prod.appA=<INPUT>
+ebs.prod.appB=<INPUT>
+ebs.prod.appC=<INPUT>
+### PRE-PROD
+ebs.preprod.db=<INPUT>
+ebs.preprod.appA=<INPUT>
+ebs.preprod.appB=<INPUT>
+ebs.preprod.appC=<INPUT>
+### test
+ebs.test.db=<INPUT>
+ebs.test.appA=<INPUT>
+ebs.test.appB=<INPUT>
+ebs.test.appC=<INPUT>
+### dev
+ebs.dev.db=<INPUT>
+ebs.dev.appA=<INPUT>
+ebs.dev.appB=<INPUT>
+ebs.dev.appC=<INPUT>
+
+## SOA
+### PROD
+soa.prod.admin=<INPUT>
+soa.prod.appA=<INPUT>
+soa.prod.appB=<INPUT>
+soa.prod.appC=<INPUT>
+### PRE-PROD
+soa.preprod.admin=<INPUT>
+soa.preprod.appA=<INPUT>
+soa.preprod.appB=<INPUT>
+soa.preprod.appC=<INPUT>
+### test
+soa.test.admin=<INPUT>
+soa.test.appA=<INPUT>
+soa.test.appB=<INPUT>
+soa.test.appC=<INPUT>
+### dev
+soa.dev.admin=<INPUT>
+soa.dev.appA=<INPUT>
+soa.dev.appB=<INPUT>
+soa.dev.appC=<INPUT>
+
+## EDRMS
+### PROD
+edrms.prod.appA=<INPUT>
+edrms.prod.appB=<INPUT>
+edrms.prod.appC=<INPUT>
+### PRE-PROD
+edrms.preprod.appA=<INPUT>
+edrms.preprod.appB=<INPUT>
+edrms.preprod.appC=<INPUT>
+### test
+edrms.test.appA=<INPUT>
+edrms.test.appB=<INPUT>
+edrms.test.appC=<INPUT>
+### dev
+edrms.dev.appA=<INPUT>
+edrms.dev.appB=<INPUT>
+edrms.dev.appC=<INPUT>
