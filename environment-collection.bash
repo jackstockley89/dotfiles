@@ -46,9 +46,20 @@ output=`awk '/eu-west-2c/ && /ccms-edrms-ecs-cluster/ { print $2 }' $properties/
 sed -i '' 's/edrms.dev.appC=<INPUT>/edrms.dev.appC='${output}'/g' $properties/.laaopsproperties
 
 ## OPA
-
+output=`awk '/eu-west-2a/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$devfile`
+sed -i '' 's/opa.dev.appA=<INPUT>/opa.dev.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$devfile`
+sed -i '' 's/opa.dev.appB=<INPUT>/opa.dev.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$devfile`
+sed -i '' 's/opa.dev.appC=<INPUT>/opa.dev.appC='${output}'/g' $properties/.laaopsproperties
 
 ## PUI
+output=`awk '/eu-west-2a/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$devfile`
+sed -i '' 's/pui.dev.appA=<INPUT>/pui.dev.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$devfile`
+sed -i '' 's/pui.dev.appB=<INPUT>/pui.dev.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$devfile`
+sed -i '' 's/pui.dev.appC=<INPUT>/pui.dev.appC='${output}'/g' $properties/.laaopsproperties
 
 ## TEST
 aws-vault exec laa-test-lz -- aws ec2 describe-instances \
@@ -85,9 +96,20 @@ output=`awk '/eu-west-2c/ && /ccms-edrms-ecs-cluster/ { print $2 }' $properties/
 sed -i '' 's/edrms.test.appC=<INPUT>/edrms.test.appC='${output}'/g' $properties/.laaopsproperties
 
 ## OPA
-
+output=`awk '/eu-west-2a/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$testfile`
+sed -i '' 's/opa.test.appA=<INPUT>/opa.test.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$testfile`
+sed -i '' 's/opa.test.appB=<INPUT>/opa.test.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$testfile`
+sed -i '' 's/opa.test.appC=<INPUT>/opa.test.appC='${output}'/g' $properties/.laaopsproperties
 
 ## PUI
+output=`awk '/eu-west-2a/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$testfile`
+sed -i '' 's/pui.test.appA=<INPUT>/pui.test.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$testfile`
+sed -i '' 's/pui.test.appB=<INPUT>/pui.test.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$testfile`
+sed -i '' 's/pui.test.appC=<INPUT>/pui.test.appC='${output}'/g' $properties/.laaopsproperties
 
 ## PRE-PROD
 aws-vault exec laa-staging-lz -- aws ec2 describe-instances \
@@ -124,9 +146,20 @@ output=`awk '/eu-west-2c/ && /ccms-edrms-ecs-cluster/ { print $2 }' $properties/
 sed -i '' 's/edrms.preprod.appC=<INPUT>/edrms.preprod.appC='${output}'/g' $properties/.laaopsproperties
 
 ## OPA
-
+output=`awk '/eu-west-2a/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$preprodfile`
+sed -i '' 's/opa.preprod.appA=<INPUT>/opa.preprod.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$preprodfile`
+sed -i '' 's/opa.preprod.appB=<INPUT>/opa.preprod.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$preprodfile`
+sed -i '' 's/opa.preprod.appC=<INPUT>/opa.preprod.appC='${output}'/g' $properties/.laaopsproperties
 
 ## PUI
+output=`awk '/eu-west-2a/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$preprodfile`
+sed -i '' 's/pui.preprod.appA=<INPUT>/pui.preprod.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$preprodfile`
+sed -i '' 's/pui.preprod.appB=<INPUT>/pui.preprod.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$preprodfile`
+sed -i '' 's/pui.preprod.appC=<INPUT>/pui.preprod.appC='${output}'/g' $properties/.laaopsproperties
 
 ## PROD
 aws-vault exec laa-production-lz -- aws ec2 describe-instances \
@@ -163,8 +196,19 @@ output=`awk '/eu-west-2c/ && /ccms-edrms-ecs-cluster/ { print $2 }' $properties/
 sed -i '' 's/edrms.prod.appC=<INPUT>/edrms.prod.appC='${output}'/g' $properties/.laaopsproperties
 
 ## OPA
-
+output=`awk '/eu-west-2a/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$prodfile`
+sed -i '' 's/opa.prod.appA=<INPUT>/opa.prod.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$prodfile`
+sed -i '' 's/opa.prod.appB=<INPUT>/opa.prod.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-opa18-hub-ecs-cluster/ { print $2 }' $properties/$prodfile`
+sed -i '' 's/opa.prod.appC=<INPUT>/opa.prod.appC='${output}'/g' $properties/.laaopsproperties
 
 ## PUI
+output=`awk '/eu-west-2a/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$prodfile`
+sed -i '' 's/pui.prod.appA=<INPUT>/pui.prod.appA='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2b/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$prodfile`
+sed -i '' 's/pui.prod.appB=<INPUT>/pui.prod.appB='${output}'/g' $properties/.laaopsproperties
+output=`awk '/eu-west-2c/ && /ccms-pui-ecs-cluster/ { print $2 }' $properties/$prodfile`
+sed -i '' 's/pui.prod.appC=<INPUT>/pui.prod.appC='${output}'/g' $properties/.laaopsproperties
 
 sed -i '' 's/^.*=$//g' $properties/.laaopsproperties
