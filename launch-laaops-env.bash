@@ -54,8 +54,38 @@ edrms) echo "${1}: ${ENV}"
         exit
       fi
       ;;
+opa) echo "${1}: ${ENV}"
+      cd ${scriptHome}
+      if [ ${ENV} == prod ]; then
+        osascript .launch-env-2.scpt $(prop 'opa.prod.*') production
+      elif [ ${ENV} == pre-prod ]; then
+        osascript .launch-env-2.scpt $(prop 'opa.preprod.*') staging
+      elif [ ${ENV} == test ]; then
+        osascript .launch-env-2.scpt $(prop 'opa.test.*') test
+      elif [ ${ENV} == dev ]; then
+        osascript .launch-env-2.scpt $(prop 'opa.dev.*') development
+      else
+        echo "Unknown Environment"    
+        exit
+      fi
+      ;;
+pui) echo "${1}: ${ENV}"
+      cd ${scriptHome}
+      if [ ${ENV} == prod ]; then
+        osascript .launch-env-2.scpt $(prop 'pui.prod.*') production
+      elif [ ${ENV} == pre-prod ]; then
+        osascript .launch-env-2.scpt $(prop 'pui.preprod.*') staging
+      elif [ ${ENV} == test ]; then
+        osascript .launch-env-2.scpt $(prop 'pui.test.*') test
+      elif [ ${ENV} == dev ]; then
+        osascript .launch-env-2.scpt $(prop 'pui.dev.*') development
+      else
+        echo "Unknown Environment"    
+        exit
+      fi
+      ;;
 help) echo "${1}"
-      echo "Application List: ebs, soa, edrms"
+      echo "Application List: ebs, soa, edrms, opa, pui"
       echo "Environment List: dev, test, pre-prod, prod"
       echo "example: launch-env.scpt <Application> <Environement>"
       ;;
