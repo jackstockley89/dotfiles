@@ -57,9 +57,9 @@ edrms) echo "${1}: ${ENV}"
 opa) echo "${1}: ${ENV}"
       cd ${scriptHome}
       if [ ${ENV} == prod ]; then
-        osascript .launch-env-2.scpt $(prop 'opa.prod.*') production
+        osascript .launch-env-3.scpt $(prop 'opa.prod.*') production
       elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env-2.scpt $(prop 'opa.preprod.*') staging
+        osascript .launch-env-3.scpt $(prop 'opa.preprod.*') staging
       elif [ ${ENV} == test ]; then
         osascript .launch-env-2.scpt $(prop 'opa.test.*') test
       elif [ ${ENV} == dev ]; then
@@ -72,9 +72,9 @@ opa) echo "${1}: ${ENV}"
 pui) echo "${1}: ${ENV}"
       cd ${scriptHome}
       if [ ${ENV} == prod ]; then
-        osascript .launch-env-2.scpt $(prop 'pui.prod.*') production
+        osascript .launch-env-3.scpt $(prop 'pui.prod.*') production
       elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env-2.scpt $(prop 'pui.preprod.*') staging
+        osascript .launch-env-3.scpt $(prop 'pui.preprod.*') staging
       elif [ ${ENV} == test ]; then
         osascript .launch-env-2.scpt $(prop 'pui.test.*') test
       elif [ ${ENV} == dev ]; then
