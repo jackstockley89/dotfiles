@@ -59,3 +59,39 @@ edrms.test.appC=<INPUT>
 edrms.dev.appA=<INPUT>
 edrms.dev.appB=<INPUT>
 edrms.dev.appC=<INPUT>
+
+## OPA
+### PROD
+opa.prod.appA=<INPUT>
+opa.prod.appB=<INPUT>
+opa.prod.appC=<INPUT>
+### PRE-PROD
+opa.preprod.appA=<INPUT>
+opa.preprod.appB=<INPUT>
+opa.preprod.appC=<INPUT>
+### test
+opa.test.appA=<INPUT>
+opa.test.appB=<INPUT>
+opa.test.appC=<INPUT>
+### dev
+opa.dev.appA=<INPUT>
+opa.dev.appB=<INPUT>
+opa.dev.appC=<INPUT>
+
+## PUI
+### PROD
+pui.prod.appA=<INPUT>
+pui.prod.appB=<INPUT>
+pui.prod.appC=<INPUT>
+### PRE-PROD
+pui.preprod.appA=<INPUT>
+pui.preprod.appB=<INPUT>
+pui.preprod.appC=<INPUT>
+### test
+pui.test.appA=<INPUT>
+pui.test.appB=<INPUT>
+pui.test.appC=<INPUT>
+### dev
+pui.dev.appA=<INPUT>
+pui.dev.appB=<INPUT>
+pui.dev.appC=<INPUT>
