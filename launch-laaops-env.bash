@@ -9,109 +9,59 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 
 function prop {
-    grep "${APP}" ~/properties/.laaopsproperties|cut -d'=' -f2
+    grep "${APP}.${ENV}.*" ~/properties/.laaopsproperties|cut -d'=' -f2
 }
+
+count=`cat ~/properties/.laaopsproperties | grep ${APP}.${ENV}.* | wc -l | sed 's/ //g'`
+
+if [ ${ENV} == prod ]; then
+  key=production
+elif [ ${ENV} == preprod ]; then
+  key=staging
+elif [ ${ENV} == test ]; then
+  key=test
+elif [ ${ENV} == dev ]; then
+  key=development
+else
+  echo -e "${CYAN}Unknown Environment: ${RED}${ENV}"
+  echo -e "${CYAN}Environment List: ${GREEN}[dev, test, preprod, prod]"
+  echo -e "${YELLOW}Use help to show script usage"
+  echo -e "launch-env.scpt help${NC}"
+  exit 1
+fi
 
 ## open env
 case "$APP" in
 
-ebs)  echo "${APP}: ${ENV}"
-      cd ${scriptHome}
-      count=`cat ~/properties/.laaopsproperties | grep ${APP}.${ENV}.* | wc -l | sed 's/ //g'`
-      if [ ${ENV} == prod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'ebs.prod.*') production
-      elif [ ${ENV} == preprod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'ebs.preprod.*') staging
-      elif [ ${ENV} == test ]; then
-        osascript .launch-env-${count}.scpt $(prop 'ebs.test.*') test
-      elif [ ${ENV} == dev ]; then
-        osascript .launch-env-${count}.scpt $(prop 'ebs.dev.*') development
-      else
-        echo -e "${CYAN}Unknown Environment: ${RED}${ENV}${NC}"
-        echo -e "${CYAN}Environment List: ${GREEN}[dev, test, preprod, prod]${NC}"
-        exit
-      fi
+ebs)  echo "Application: ${APP} | Environment: ${ENV}"
+      cd 
+      osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
-soa)  echo "${APP}: ${ENV}"
-      cd ${scriptHome}
-      count=`cat ~/properties/.laaopsproperties | grep ${APP}.${ENV}.* | wc -l | sed 's/ //g'`
-      if [ ${ENV} == prod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'soa.prod.*') production
-      elif [ ${ENV} == preprod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'soa.preprod.*') staging
-      elif [ ${ENV} == test ]; then
-        osascript .launch-env-${count}.scpt $(prop 'soa.test.*') test
-      elif [ ${ENV} == dev ]; then
-        osascript .launch-env-${count}.scpt $(prop 'soa.dev.*') development
-      else
-        echo -e "${CYAN}Unknown Environment: ${RED}${ENV}${NC}"
-        echo -e "${CYAN}Environment List: ${GREEN}[dev, test, preprod, prod]${NC}"
-        exit
-      fi
+soa)  echo "Application: ${APP} | Environment: ${ENV}"
+      cd 
+      osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
-edrms) echo "${APP}: ${ENV}"
-      cd ${scriptHome}
-      count=`cat ~/properties/.laaopsproperties | grep ${APP}.${ENV}.* | wc -l | sed 's/ //g'`
-      if [ ${ENV} == prod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'edrms.prod.*') production
-      elif [ ${ENV} == preprod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'edrms.preprod.*') staging
-      elif [ ${ENV} == test ]; then
-        osascript .launch-env-${count}.scpt $(prop 'edrms.test.*') test
-      elif [ ${ENV} == dev ]; then
-        osascript .launch-env-${count}.scpt $(prop 'edrms.dev.*') development
-      else
-        echo -e "${CYAN}Unknown Environment: ${RED}${ENV}${NC}"
-        echo -e "${CYAN}Environment List: ${GREEN}[dev, test, preprod, prod]${NC}"
-        exit
-      fi
+edrms) echo "Application: ${APP} | Environment: ${ENV}"
+      cd 
+      osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
-opa) echo "${APP}: ${ENV}"
-      cd ${scriptHome}
-      count=`cat ~/properties/.laaopsproperties | grep ${APP}.${ENV}.* | wc -l | sed 's/ //g'`
-      if [ ${ENV} == prod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'opa.prod.*') production
-      elif [ ${ENV} == preprod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'opa.preprod.*') staging
-      elif [ ${ENV} == test ]; then
-        osascript .launch-env-${count}.scpt $(prop 'opa.test.*') test
-      elif [ ${ENV} == dev ]; then
-        osascript .launch-env-${count}.scpt $(prop 'opa.dev.*') development
-      else
-        echo -e "${CYAN}Unknown Environment: ${RED}${ENV}${NC}"
-        echo -e "${CYAN}Environment List: ${GREEN}[dev, test, preprod, prod]${NC}"
-        exit
-      fi
+opa) echo "Application: ${APP} | Environment: ${ENV}"
+      cd 
+      osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
-pui) echo "${APP}: ${ENV}"
-      cd ${scriptHome}
-      count=`cat ~/properties/.laaopsproperties | grep ${APP}.${ENV}.* | wc -l | sed 's/ //g'`
-      if [ ${ENV} == prod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'pui.prod.*') production
-      elif [ ${ENV} == preprod ]; then
-        osascript .launch-env-${count}.scpt $(prop 'pui.preprod.*') staging
-      elif [ ${ENV} == test ]; then
-        osascript .launch-env-${count}.scpt $(prop 'pui.test.*') test
-      elif [ ${ENV} == dev ]; then
-        osascript .launch-env-${count}.scpt $(prop 'pui.dev.*') development
-      else
-        echo -e "${CYAN}Unknown Environment: ${RED}${ENV}${NC}"
-        echo -e "${CYAN}Environment List: ${GREEN}[dev, test, preprod, prod]${NC}"
-        exit
-      fi
+pui) echo "Application: ${APP} | Environment: ${ENV}"
+      cd 
+      osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
 help) echo "${APP}"
       echo -e "${CYAN}Application List: ${GREEN}[ebs, soa, edrms, opa, pui]"
       echo -e "${CYAN}Environment List: ${GREEN}[dev, test, preprod, prod]"
       echo -e "${YELLOW}example: launch-env.scpt <Application> <Environement>${NC}"
       ;;
-*)    if [[ ${ENV} =~ ^(dev|test|preprod|prod)$ ]]; then
-        echo -e "${CYAN}Unknown Application: ${RED}${APP}"
-        echo -e "${CYAN}Application List: ${GREEN}[ebs, soa, edrms, opa, pui]"
-        echo -e "${YELLOW}Use help to show script usage"
-        echo -e "launch-env.scpt help${NC}"
-      else 
-        exit 1
-      fi
+*)    echo -e "${CYAN}Unknown Application: ${RED}${APP}"
+      echo -e "${CYAN}Application List: ${GREEN}[ebs, soa, edrms, opa, pui]"
+      echo -e "${YELLOW}Use help to show script usage"
+      echo -e "launch-env.scpt help${NC}"
+      exit 1
       ;;
 esac
