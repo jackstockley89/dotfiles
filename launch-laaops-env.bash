@@ -11,14 +11,15 @@ case "$1" in
 
 ebs)  echo "${1}: ${ENV}"
       cd ${scriptHome}
+      count=`cat ~/properties/.laaopsproperties | grep ${1}.${ENV}.* | wc -l | sed 's/ //g'`
       if [ ${ENV} == prod ]; then
-        osascript .launch-env-3.scpt $(prop 'ebs.prod.*') production
-      elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env-3.scpt $(prop 'ebs.preprod.*') staging
+        osascript .launch-env-${count}.scpt $(prop 'ebs.prod.*') production
+      elif [ ${ENV} == preprod ]; then
+        osascript .launch-env-${count}.scpt $(prop 'ebs.preprod.*') staging
       elif [ ${ENV} == test ]; then
-        osascript .launch-env-2.scpt $(prop 'ebs.test.*') test
+        osascript .launch-env-${count}.scpt $(prop 'ebs.test.*') test
       elif [ ${ENV} == dev ]; then
-        osascript .launch-env-2.scpt $(prop 'ebs.dev.*') development
+        osascript .launch-env-${count}.scpt $(prop 'ebs.dev.*') development
       else
         echo "Unknown Environment"    
         exit
@@ -26,14 +27,15 @@ ebs)  echo "${1}: ${ENV}"
       ;;
 soa)  echo "${1}: ${ENV}"
       cd ${scriptHome}
+      count=`cat ~/properties/.laaopsproperties | grep ${1}.${ENV}.* | wc -l | sed 's/ //g'`
       if [ ${ENV} == prod ]; then
-        osascript .launch-env-4.scpt $(prop 'soa.prod.*') production
-      elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env-4.scpt $(prop 'soa.preprod.*') staging
+        osascript .launch-env-${count}.scpt $(prop 'soa.prod.*') production
+      elif [ ${ENV} == preprod ]; then
+        osascript .launch-env-${count}.scpt $(prop 'soa.preprod.*') staging
       elif [ ${ENV} == test ]; then
-        osascript .launch-env-2.scpt $(prop 'soa.test.*') test
+        osascript .launch-env-${count}.scpt $(prop 'soa.test.*') test
       elif [ ${ENV} == dev ]; then
-        osascript .launch-env-2.scpt $(prop 'soa.dev.*') development
+        osascript .launch-env-${count}.scpt $(prop 'soa.dev.*') development
       else
         echo "Unknown Environment"    
         exit
@@ -41,14 +43,15 @@ soa)  echo "${1}: ${ENV}"
       ;;
 edrms) echo "${1}: ${ENV}"
       cd ${scriptHome}
+      count=`cat ~/properties/.laaopsproperties | grep ${1}.${ENV}.* | wc -l | sed 's/ //g'`
       if [ ${ENV} == prod ]; then
-        osascript .launch-env-2.scpt $(prop 'edrms.prod.*') production
-      elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env-2.scpt $(prop 'edrms.preprod.*') staging
+        osascript .launch-env-${count}.scpt $(prop 'edrms.prod.*') production
+      elif [ ${ENV} == preprod ]; then
+        osascript .launch-env-${count}.scpt $(prop 'edrms.preprod.*') staging
       elif [ ${ENV} == test ]; then
-        osascript .launch-env-2.scpt $(prop 'edrms.test.*') test
+        osascript .launch-env-${count}.scpt $(prop 'edrms.test.*') test
       elif [ ${ENV} == dev ]; then
-        osascript .launch-env-2.scpt $(prop 'edrms.dev.*') development
+        osascript .launch-env-${count}.scpt $(prop 'edrms.dev.*') development
       else
         echo "Unknown Environment"    
         exit
@@ -56,14 +59,15 @@ edrms) echo "${1}: ${ENV}"
       ;;
 opa) echo "${1}: ${ENV}"
       cd ${scriptHome}
+      count=`cat ~/properties/.laaopsproperties | grep ${1}.${ENV}.* | wc -l | sed 's/ //g'`
       if [ ${ENV} == prod ]; then
-        osascript .launch-env-3.scpt $(prop 'opa.prod.*') production
-      elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env-3.scpt $(prop 'opa.preprod.*') staging
+        osascript .launch-env-${count}.scpt $(prop 'opa.prod.*') production
+      elif [ ${ENV} == preprod ]; then
+        osascript .launch-env-${count}.scpt $(prop 'opa.preprod.*') staging
       elif [ ${ENV} == test ]; then
-        osascript .launch-env-2.scpt $(prop 'opa.test.*') test
+        osascript .launch-env-${count}.scpt $(prop 'opa.test.*') test
       elif [ ${ENV} == dev ]; then
-        osascript .launch-env-2.scpt $(prop 'opa.dev.*') development
+        osascript .launch-env-${count}.scpt $(prop 'opa.dev.*') development
       else
         echo "Unknown Environment"    
         exit
@@ -71,25 +75,26 @@ opa) echo "${1}: ${ENV}"
       ;;
 pui) echo "${1}: ${ENV}"
       cd ${scriptHome}
+      count=`cat ~/properties/.laaopsproperties | grep ${1}.${ENV}.* | wc -l | sed 's/ //g'`
       if [ ${ENV} == prod ]; then
-        osascript .launch-env-3.scpt $(prop 'pui.prod.*') production
-      elif [ ${ENV} == pre-prod ]; then
-        osascript .launch-env-3.scpt $(prop 'pui.preprod.*') staging
+        osascript .launch-env-${count}.scpt $(prop 'pui.prod.*') production
+      elif [ ${ENV} == preprod ]; then
+        osascript .launch-env-${count}.scpt $(prop 'pui.preprod.*') staging
       elif [ ${ENV} == test ]; then
-        osascript .launch-env-2.scpt $(prop 'pui.test.*') test
+        osascript .launch-env-${count}.scpt $(prop 'pui.test.*') test
       elif [ ${ENV} == dev ]; then
-        osascript .launch-env-2.scpt $(prop 'pui.dev.*') development
+        osascript .launch-env-${count}.scpt $(prop 'pui.dev.*') development
       else
         echo "Unknown Environment"    
         exit
       fi
       ;;
-help) echo "${1}"
+help) echo "${1} ${ENV}"
       echo "Application List: ebs, soa, edrms, opa, pui"
-      echo "Environment List: dev, test, pre-prod, prod"
+      echo "Environment List: dev, test, preprod, prod"
       echo "example: launch-env.scpt <Application> <Environement>"
       ;;
-*)    echo "Unknown Enviroment ${ENV}"
+*)    echo "Unknown Application ${1} or Enviroment ${ENV}"
       echo "Use help to show script usage"
       echo "launch-env.scpt help"
       ;;
