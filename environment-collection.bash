@@ -1,5 +1,5 @@
 #!bin/bash
-set -x 
+#set -x 
 
 properties=~/properties
 devfile=.development.txt
@@ -13,7 +13,7 @@ cp $properties/laaopsproperties.txt $properties/.laaopsproperties
 #collect a list of environments and place them in a text file 
 ## DEV
 aws-vault exec laa-development-lz -- aws ec2 describe-instances \
---filter "Name=tag:Name,Values=ccms-*" \
+--filters Name=tag:Name,Values=ccms-* Name=instance-state-name,Values=running \
 --query "Reservations [*].Instances[*].{Instance:PrivateIpAddress,AZ:Placement.AvailabilityZone,Name:Tags[?Key=='Name'].Value | [0]}"  \
 --output text > $properties/.development.txt
 
@@ -63,7 +63,7 @@ sed -i '' 's/pui.dev.appC=<INPUT>/pui.dev.appC='${output}'/g' $properties/.laaop
 
 ## TEST
 aws-vault exec laa-test-lz -- aws ec2 describe-instances \
---filter "Name=tag:Name,Values=ccms-*" \
+--filters Name=tag:Name,Values=ccms-* Name=instance-state-name,Values=running \
 --query "Reservations [*].Instances[*].{Instance:PrivateIpAddress,AZ:Placement.AvailabilityZone,Name:Tags[?Key=='Name'].Value | [0]}"  \
 --output text > $properties/.testing.txt
 
@@ -113,7 +113,7 @@ sed -i '' 's/pui.test.appC=<INPUT>/pui.test.appC='${output}'/g' $properties/.laa
 
 ## PRE-PROD
 aws-vault exec laa-staging-lz -- aws ec2 describe-instances \
---filter "Name=tag:Name,Values=ccms-*" \
+--filters Name=tag:Name,Values=ccms-* Name=instance-state-name,Values=running \
 --query "Reservations [*].Instances[*].{Instance:PrivateIpAddress,AZ:Placement.AvailabilityZone,Name:Tags[?Key=='Name'].Value | [0]}"  \
 --output text > $properties/.staging.txt
 
@@ -163,7 +163,7 @@ sed -i '' 's/pui.preprod.appC=<INPUT>/pui.preprod.appC='${output}'/g' $propertie
 
 ## PROD
 aws-vault exec laa-production-lz -- aws ec2 describe-instances \
---filter "Name=tag:Name,Values=ccms-*" \
+--filters Name=tag:Name,Values=ccms-* Name=instance-state-name,Values=running \
 --query "Reservations [*].Instances[*].{Instance:PrivateIpAddress,AZ:Placement.AvailabilityZone,Name:Tags[?Key=='Name'].Value | [0]}"  \
 --output text > $properties/.production.txt
 
