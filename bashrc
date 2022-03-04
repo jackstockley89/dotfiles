@@ -42,3 +42,13 @@ alias tf135='tfenv use 0.13.5; echo "Terraform Version: "; tfenv version-name'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias launchlaaops='osascript ~/.launch-laaops-terminal.scpt'
 alias launchmodplat='osascript ~/.launch-modplat-terminal.scpt'
+
+## URL Aliases
+alias urlgoogle='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://google.com/''
+alias urlaws='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://aws.amazon.com/''
+alias urlpui='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/laa-ccms-infra-pui''
+alias urlsoa='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/laa-ccms-infra-soa''
+alias urlebs='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/laa-ccms-infra-ebs''
+alias urlopa='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/laa-ccms-infra-opa-hub''
+alias urledrms='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/laa-ccms-infra-edrms''
+alias urlshared='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/laa-ccms-shared''
