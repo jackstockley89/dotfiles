@@ -13,6 +13,7 @@ function prop {
 }
 
 count=`cat ~/properties/.laaopsproperties | grep ${APP}.${ENV}.* | wc -l | sed 's/ //g'`
+list=`grep -w ${APP}.${ENV}.* ~/properties/.laaopsproperties`
 
 if [ ${ENV} == prod ]; then
   key=production
@@ -34,23 +35,28 @@ fi
 case "$APP" in
 
 ebs)  echo "Application: ${APP} | Environment: ${ENV}"
-      cd 
+      cd
+      echo -e "\n${list}"
       osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
 soa)  echo "Application: ${APP} | Environment: ${ENV}"
-      cd 
+      cd
+      echo -e "\n${list}"
       osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
 edrms) echo "Application: ${APP} | Environment: ${ENV}"
-      cd 
+      cd
+      echo -e "\n${list}"
       osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
 opa) echo "Application: ${APP} | Environment: ${ENV}"
-      cd 
+      cd
+      echo -e "\n${list}"
       osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
 pui) echo "Application: ${APP} | Environment: ${ENV}"
-      cd 
+      cd
+      echo -e "\n${list}"
       osascript .launch-env-${count}.scpt $(prop '${APP}.${ENV}.*') $key
       ;;
 help) echo "${APP}"

@@ -39,9 +39,13 @@ alias tf101='tfenv use 1.0.1; echo "Terraform Version: "; tfenv version-name'
 alias tf155='tfenv use 0.15.5; echo "Terraform Version: "; tfenv version-name'
 alias tf146='tfenv use 0.14.6; echo "Terraform Version: "; tfenv version-name'
 alias tf135='tfenv use 0.13.5; echo "Terraform Version: "; tfenv version-name'
+
+## Iterm2 scripts
+alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias launchlaaops='osascript ~/.launch-laaops-terminal.scpt'
 alias launchmodplat='osascript ~/.launch-modplat-terminal.scpt'
+
 
 ## URL Aliases
 alias urlgoogle='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://google.com/''

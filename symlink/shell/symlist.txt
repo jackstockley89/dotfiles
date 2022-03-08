@@ -8,3 +8,4 @@ launch-env-4.scpt
 launch-laaops-terminal.scpt
 launch-modplat-terminal.scpt
 launch-laaops-env.bash
+environment-collection.bash
