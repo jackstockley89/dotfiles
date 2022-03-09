@@ -53,7 +53,7 @@ ebs)  echo "Application: ${APP} | Environment: ${ENV}"
             echo -e "\nList of connection commands:"
             for i in $(prop '${APP}.${ENV}.*')
             do
-            echo -e "ssh $i -i ~.ssh/${key}-general.pem"
+            echo -e "ssh $i -i ~/.ssh/${key}-general.pem"
             done
       else 
             exit 1
@@ -72,7 +72,7 @@ soa)  echo "Application: ${APP} | Environment: ${ENV}"
             echo -e "\nList of connection commands:"
             for i in $(prop '${APP}.${ENV}.*')
             do
-            echo -e "ssh $i -i ~.ssh/${key}-general.pem"
+            echo -e "ssh $i -i ~/.ssh/${key}-general.pem"
             done
       else 
             exit 1
@@ -91,7 +91,7 @@ edrms) echo "Application: ${APP} | Environment: ${ENV}"
             echo -e "\nList of connection commands:"
             for i in $(prop '${APP}.${ENV}.*')
             do
-            echo -e "ssh $i -i ~.ssh/${key}-general.pem"
+            echo -e "ssh $i -i ~/.ssh/${key}-general.pem"
             done
       else 
             exit 1
@@ -110,7 +110,7 @@ opa) echo "Application: ${APP} | Environment: ${ENV}"
             echo -e "\nList of connection commands:"
             for i in $(prop '${APP}.${ENV}.*')
             do
-            echo -e "ssh $i -i ~.ssh/${key}-general.pem"
+            echo -e "ssh $i -i ~/.ssh/${key}-general.pem"
             done
       else 
             exit 1
@@ -129,7 +129,7 @@ pui) echo "Application: ${APP} | Environment: ${ENV}"
             echo -e "\nList of connection commands:"
             for i in $(prop '${APP}.${ENV}.*')
             do
-            echo -e "ssh $i -i ~.ssh/${key}-general.pem"
+            echo -e "ssh $i -i ~/.ssh/${key}-general.pem"
             done
       else 
             exit 1
