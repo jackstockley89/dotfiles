@@ -1,5 +1,5 @@
 #!bin/bash
-#set -x 
+set -x 
 
 properties=~/properties
 devfile=.development.txt
@@ -7,8 +7,13 @@ testfile=.testing.txt
 preprodfile=.staging.txt
 prodfile=.production.txt
 
-cp -r properties ~
-cp $properties/laaopsproperties.txt $properties/.laaopsproperties
+if [ "${properties}/laaopsproperties.txt" == `ls ~/properties/laaopsproperties.txt` ]; then
+  echo -e "file already exists"
+  cp $properties/laaopsproperties.txt $properties/.laaopsproperties
+else
+  cp -r properties ~
+  cp $properties/laaopsproperties.txt $properties/.laaopsproperties
+fi
 
 #collect a list of environments and place them in a text file 
 ## DEV
