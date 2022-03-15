@@ -6,10 +6,11 @@ echo -e "Would you like to continue to view outdated package versions?"
 read -p '[y/n]: ' yesnovar
 
 if [ $yesnovar == n ]; then
+	exit 0
+elif [ $yesnovar == y ]; then
 	echo -e "\nOutdated Versions"
 	outdated=`brew outdated`
 	echo $outdated
-elif [ $yesnovar == y ]; then
 	if [ -z $outdated ]; then
 		echo -e "\nNothing to upgrade"
 		exit 0
