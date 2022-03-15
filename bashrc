@@ -45,6 +45,7 @@ alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias launchlaaops='osascript ~/.launch-laaops-terminal.scpt'
 alias launchmodplat='osascript ~/.launch-modplat-terminal.scpt'
+alias pkgver='bash ~/.brew-version-check.bash'
 
 
 ## URL Aliases
