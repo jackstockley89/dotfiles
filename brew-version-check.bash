@@ -10,21 +10,22 @@ if [ $yesnovar == n ]; then
 elif [ $yesnovar == y ]; then
 	echo -e "\nOutdated Versions"
 	outdated=`brew outdated`
-	echo $outdated
-	if [ -z $outdated ]; then
-		echo -e "\nNothing to upgrade"
-		exit 0
-	else
+	count=${outdated} | wc -l
+	echo "${outdated}"
+	if [ ${count} > 0 ]; then
 		echo -e "\nWould you like to upgrade outdated packages?"
 		read -p '[y/n]: ' yesnovar
 		if [ $yesnovar == n ]; then
-			exit 0
+			exit
 		elif [ $yesnovar == y ]; then
 			brew upgrade
 		else 
 			echo "Unknown Response $yesnovar"
 			exit 1
 		fi
+	else
+		echo -e "Nothing to upgrade"
+		exit
 	fi
 else
 	echo "Unknown Response $yesnovar"
