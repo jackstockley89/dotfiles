@@ -10,10 +10,10 @@ source <(kubectl completion bash)
 
 ## read aliases file
 if [ -f ~/.bash_aliases ]; then
-    . ~/..bash_aliases
+    . ~/.bash_aliases
 fi
 
 ## read function file
 if [ -f ~/.bash_functions ]; then
-    . ~/..bash_functions
+    . ~/.bash_functions
 fi
