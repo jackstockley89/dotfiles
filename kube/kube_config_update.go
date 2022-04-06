@@ -11,7 +11,7 @@ func main() {
 	var env string
 	profile := []string{"live", "test", "jacksapp", "minikube"}
 	proFlag := flag.String("p", "live", "profile name to use")
-	cxtFlag := flag.String("cxt", "live.cloud-platform.service.justice.gov.uk", "context name to use")
+	cxtFlag := flag.String("cxt", "live", "context name to use")
 	arg := proFlag
 	arg2 := cxtFlag
 	home, _ := os.UserHomeDir()
@@ -47,7 +47,7 @@ func main() {
 			fmt.Println("AWS_PROFILE:", os.Getenv("AWS_PROFILE"))
 
 			// set kubecontext to correct context name
-			os.Setenv("KUBECONTEXT", *arg2)
+			os.Setenv("KUBECONTEXT", *arg2+"."+os.Getenv("CP_ENV"))
 			fmt.Println("KUBECONTEXT:", os.Getenv("KUBECONTEXT"))
 
 			// set command line prompt to comtext name
