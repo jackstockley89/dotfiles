@@ -3,24 +3,27 @@
 
 DOTFILES=$HOME/repo/dotfiles
 SYMLIST=symlist.txt
+normal="$(tput sgr0)"
+red="$(tput setaf 1)"
+green="$(tput setaf 2)"
 
 for file in $(cat $SYMLIST)
 do
   SYMLINK=$(find $HOME -maxdepth 1 -type l -name .$file -print)
   if [ -L "$SYMLINK" ]; then
-    echo "soft link $HOME/.$file already exists"
+    echo -e "soft link $HOME/.$file ${green}already exists${normal}"
   else
-    echo "soft link $HOME/.$file is missing"
+    echo -e "soft link $HOME/.$file ${red}is missing${normal}"
     SYMDIR=$(find $HOME -maxdepth 1 -type d -name .$file -print)
     SYMFILE=$(find $HOME -maxdepth 1 -type f -name .$file -print)
     if [ -f "$SYMFILE" ]; then
-      echo "replacing file for symlink"
+      echo -e "${green}replacing file for symlink${normal}"
     elif [ -d "$SYMDIR" ]; then
-      echo "replacing directory for symlink"
+      echo -e "${green}replacing directory for symlink${normal}"
     fi
     rm -rf $HOME/.$file
-    echo "creating symlink"
+    echo -e "${green}creating symlink${normal}"
     ln -s $DOTFILES/$file $HOME/.$file
-    echo "$HOME/.$file created"
+    echo -e "$HOME/.$file ${green}created${normal}"
   fi
 done;

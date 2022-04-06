@@ -12,3 +12,4 @@ launch-modplat-terminal.scpt
 launch-laaops-env.bash
 environment-collection.bash
 brew-version-check.bash
+kube_config_update
