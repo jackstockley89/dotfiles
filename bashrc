@@ -17,3 +17,8 @@ fi
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
+
+## read function file
+if [ -f ~/.env_address ]; then
+    . ~/.env_address
+fi
