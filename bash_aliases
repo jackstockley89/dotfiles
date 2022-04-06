@@ -22,6 +22,9 @@ alias lsh='ls -ltrh'
 
 ## grep Aliases
 
+## go Aliases
+alias kcu='./.kube_config_update'
+
 ## AWS Account Aliases
 alias cplat='export AWS_CONFIG_FILE=~/.aws/cloud-platform/config; export AWS_SHARED_CREDENTIALS_FILE=~/.aws/cloud-platform/credentials; echo "AWS_CONFIG_FILE: ${AWS_CONFIG_FILE}"; echo "AWS_SHARED_CREDENTIALS_FILE: ${AWS_SHARED_CREDENTIALS_FILE}"'
 alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config; echo "AWS_CONFIG_FILE: ${AWS_CONFIG_FILE}"'
@@ -44,6 +47,7 @@ alias pkgver='bash ~/.brew-version-check.bash'
 ## URL Aliases
 alias urlgoogle='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://google.com/''
 alias urlaws='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://aws.amazon.com/''
+
 ## Cloud Platform
 alias urlcp='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/cloud-platform''
 alias urlcpi='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github.com/ministryofjustice/cloud-platform-infrastructure''
