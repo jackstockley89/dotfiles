@@ -1,4 +1,15 @@
+bash_aliases,.bash_aliases
+bash_functions,.bash_functions
 bashrc,.bashrc
 bash_profile,.bash_profile
 vimrc,.vimrc
 vim,.vim
+launch-env-2.scpt,.launch-env-2.scpt
+launch-env-3.scpt,.launch-env-3.scpt
+launch-env-4.scpt,.launch-env-4.scpt
+launch-laaops-terminal.scpt,.launch-laaops-terminal.scpt
+launch-modplat-terminal.scpt,.launch-modplat-terminal.scpt
+launch-laaops-env.bash,.launch-laaops-env.bash
+environment-collection.bash,.environment-collection.bash
+brew-version-check.bash,.brew-version-check.bash
+kube_config_update,.kube_config_update
