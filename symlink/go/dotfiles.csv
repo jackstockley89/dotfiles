@@ -12,4 +12,4 @@ launch-modplat-terminal.scpt,.launch-modplat-terminal.scpt
 launch-laaops-env.bash,.launch-laaops-env.bash
 environment-collection.bash,.environment-collection.bash
 brew-version-check.bash,.brew-version-check.bash
-kube_config_update,.kube_config_update
+select-cluster-config,.select-cluster-config
