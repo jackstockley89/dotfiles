@@ -23,7 +23,7 @@ alias lsh='ls -ltrh'
 ## grep Aliases
 
 ## go Aliases
-alias kcu='~/./.kube_config_update'
+alias scc='~/./.select-cluster-config'
 
 ## AWS Account Aliases
 alias cplat='export AWS_CONFIG_FILE=~/.aws/cloud-platform/config; export AWS_SHARED_CREDENTIALS_FILE=~/.aws/cloud-platform/credentials; echo "AWS_CONFIG_FILE: ${AWS_CONFIG_FILE}"; echo "AWS_SHARED_CREDENTIALS_FILE: ${AWS_SHARED_CREDENTIALS_FILE}"'

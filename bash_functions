@@ -40,9 +40,11 @@ function setkcfg() {
     export KUBECONFIG=~/.kube/test/config
   elif [ "${1}" == "jacksapp" ]; then
     export KUBECONFIG=~/.kube/jacksapp/config
+  elif [ "${1}" == "minikube" ]; then
+    export KUBECONFIG=~/.kube/minikube/config
   else
-    echo -e "Invalid argument"
-    echo -e "Usage: setkcfg <live|test|jacksapp>"
+    echo -e "\nInvalid K8s Config"
+    echo -e "Valid Configs: live, test, jacksapp, minikube"
     echo -e "Exiting..."
     echo -e "\n"
     return
