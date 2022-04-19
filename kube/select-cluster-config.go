@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"syscall"
@@ -12,6 +13,20 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/eks"
+)
+
+var (
+	awsProfile *string
+
+	ns      string
+	env     string
+	cxtname string
+	home    string
+
+	colourCyan   = "\033[36m"
+	colourReset  = "\033[0m"
+	colourYellow = "\033[33m"
+	colourRed    = "\033[31m"
 )
 
 // list eks clusters for aws profile
@@ -51,108 +66,166 @@ func listeksclusters() {
 			fmt.Println(err.Error())
 		}
 	}
-	fmt.Println(result)
+	// exclude live and manager from list
+	for _, cluster := range result.Clusters {
+		if *cluster != "live" && *cluster != "manager" {
+			fmt.Println(string(colourYellow), "\nEKS Test Clusters", string(colourReset))
+			fmt.Println(string(colourCyan), "Cluster Name:", string(colourReset), *cluster)
+		}
+	}
+	//fmt.Println(result)
+}
+
+//setting AWS config
+func SetAWSEnv() {
+	awsRegion := "eu-west-2"
+	awsConfig := home + "/.aws/cloud-platform/config"
+	awsCreds := home + "/.aws/cloud-platform/credentials"
+	fmt.Println(string(colourYellow), "\nSetting AWS Configuration", string(colourReset))
+	// set aws_config_file to correct path
+	// set aws_shared_credentials_file to correct path
+	// set aws_region to correct region
+	// set aws_default_region to correct region
+	os.Setenv("AWS_CONFIG_FILE", awsConfig)
+	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", awsCreds)
+	os.Setenv("AWS_REGION", awsRegion)
+	os.Setenv("AWS_DEFAULT_REGION", os.Getenv("AWS_REGION"))
+
+	fmt.Println(string(colourCyan), "AWS_PROFILE:", string(colourReset), os.Getenv("AWS_PROFILE"))
+	fmt.Println(string(colourCyan), "AWS_CONFIG_FILE:", string(colourReset), os.Getenv("AWS_CONFIG_FILE"))
+	fmt.Println(string(colourCyan), "AWS_SHARED_CREDENTIALS_FILE:", string(colourReset), os.Getenv("AWS_SHARED_CREDENTIALS_FILE"))
+	fmt.Println(string(colourCyan), "AWS_REGION:", string(colourReset), os.Getenv("AWS_REGION"))
+	fmt.Println(string(colourCyan), "AWS_DEFAULT_REGION:", string(colourReset), os.Getenv("AWS_DEFAULT_REGION"))
+}
+
+// setting Kube config
+func SetKubeEnv() {
+	fmt.Println(string(colourYellow), "\nSetting Kube Configuration", string(colourReset))
+	// set kubeconfig for live or test
+	// set kube_config_path to kubeconfig
+	if *awsProfile == "namespace" {
+		kubeConfig := home + "/.kube/" + ns + "/config"
+		os.Setenv("KUBECONFIG", kubeConfig)
+		os.Setenv("KUBE_CONFIG_PATH", os.Getenv("KUBECONFIG"))
+	} else {
+		kubeConfig := home + "/.kube/" + *awsProfile + "/config"
+		os.Setenv("KUBECONFIG", kubeConfig)
+		os.Setenv("KUBE_CONFIG_PATH", os.Getenv("KUBECONFIG"))
+
+	}
+
+	fmt.Println(string(colourCyan), "KUBECONFIG:", string(colourReset), os.Getenv("KUBECONFIG"))
+	fmt.Println(string(colourCyan), "KUBE_CONFIG_PATH:", string(colourReset), os.Getenv("KUBE_CONFIG_PATH"))
+}
+
+// setting Terraform Workspace
+func SetTFWksp(cxtname string) {
+	// tf workspace to the cluster name
+	fmt.Println(string(colourYellow), "\nUpdating Terraform Workspace")
+	os.Setenv("TF_WORKSPACE", cxtname)
+
+	fmt.Println(string(colourCyan), "TF_WORKSPACE:", string(colourReset), os.Getenv("TF_WORKSPACE"))
+}
+
+func TestEnv() {
+	var arg string
+	SetKubeEnv()
+	os.Setenv("AWS_PROFILE", "moj-cp")
+	SetAWSEnv()
+	listeksclusters()
+	fmt.Println("Please select a cluster to use:")
+	fmt.Scanln(&arg)
+	cxtname := arg
+	// set kubecontext to correct context name
+	fmt.Println(string(colourYellow), "Updating Kube Context")
+	cmd := exec.Command("aws", "eks", "update-kubeconfig", "--name", cxtname)
+	cmd.Run()
+	// Set Terraform workspace to the cluster name
+	SetTFWksp(cxtname)
+	// set command line prompt to comtext name
+	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
+	// start shell with new environment variables
+	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+}
+
+func LiveEnv() {
+	SetKubeEnv()
+	os.Setenv("AWS_PROFILE", "moj-cp")
+	SetAWSEnv()
+	cxtname = *awsProfile
+	// set kubecontext to correct context name
+	fmt.Println(string(colourYellow), "Updating Kube Context")
+	os.Setenv("KUBECONTEXT", cxtname+"."+os.Getenv("CP_ENV"))
+	fmt.Println(string(colourCyan), "KUBECONTEXT:", string(colourReset), os.Getenv("KUBECONTEXT"))
+	// Set Terraform workspace to the cluster name
+	SetTFWksp(cxtname)
+	// set command line prompt to comtext name
+	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
+	// start shell with new environment variables
+	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+}
+func MinikubeEnv() {
+	SetKubeEnv()
+	cxtname = *awsProfile
+	// set kubecontext to correct context name
+	fmt.Println(string(colourYellow), "Updating Kube Context")
+	os.Setenv("KUBECONTEXT", cxtname)
+	fmt.Println(string(colourCyan), "KUBECONTEXT:", string(colourReset), os.Getenv("KUBECONTEXT"))
+	// start minikube
+	fmt.Println(string(colourYellow), "Starting Minikube")
+	cmd := exec.Command("minikube", "start")
+	cmd.Run()
+	// set command line prompt to comtext name
+	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
+	// start shell with new environment variables
+	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+}
+
+func NamespaceEnv() {
+	fmt.Println("Namespace: ")
+	fmt.Scanln(&ns)
+	fmt.Println("Environment: ")
+	fmt.Scanln(&env)
+	SetKubeEnv()
+	os.Setenv("AWS_PROFILE", ns+"-"+env)
+	SetAWSEnv()
+	cxtname = "live"
+	// set kubecontext to correct context name
+	fmt.Println(string(colourYellow), "Updating Kube Context")
+	os.Setenv("KUBECONTEXT", cxtname+"."+os.Getenv("CP_ENV"))
+	fmt.Println(string(colourCyan), "KUBECONTEXT:", string(colourReset), os.Getenv("KUBECONTEXT"))
+	// Set Terraform workspace to the cluster name
+	SetTFWksp(cxtname)
+	// set command line prompt to comtext name
+	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
+	// start shell with new environment variables
+	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
 }
 
 // passes data from flag to environment variables
 // sets a new shell with the updated environment variables
-//
 func main() {
-	colourCyan := "\033[36m"
-	colourReset := "\033[0m"
-	colourYellow := "\033[33m"
+	h, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	arg := flag.String("p", "", "profile name list: live, test, minikube, namespace")
+	awsProfile = arg
+	home = h
 
-	var env string
-	var arg *string
-	var arg2 string
-	var cxtname string
-	profile := []string{"live", "test", "jacksapp"}
-	proFlag := flag.String("p", "", "profile name to use for aws. For example: live, test, jacksapp")
-	arg = proFlag
-	home, _ := os.UserHomeDir()
-
-	// Enable command-line parsing
 	flag.Parse()
 
-	for _, p := range profile {
-		if *arg == p {
-			// set kubeconfig for live or test
-			os.Setenv("KUBECONFIG", home+"/.kube/"+p+"/config")
-			fmt.Println(string(colourCyan), "KUBECONFIG:", string(colourReset), os.Getenv("KUBECONFIG"))
-
-			// set kube_config_path to kubeconfig
-			os.Setenv("KUBE_CONFIG_PATH", os.Getenv("KUBECONFIG"))
-			fmt.Println(string(colourCyan), "KUBE_CONFIG_PATH:", string(colourReset), os.Getenv("KUBE_CONFIG_PATH"))
-
-			// set aws_profile to correct profile name
-			if p == "jacksapp" {
-				fmt.Println("Environment: ")
-				fmt.Scanln(&env)
-				os.Setenv("AWS_PROFILE", "jacksapp-"+env)
-			} else {
-				os.Setenv("AWS_PROFILE", "moj-cp")
-			}
-			fmt.Println(string(colourCyan), "AWS_PROFILE:", string(colourReset), os.Getenv("AWS_PROFILE"))
-
-			// set aws_config_file to correct path
-			os.Setenv("AWS_CONFIG_FILE", home+"/.aws/cloud-platform/config")
-			fmt.Println(string(colourCyan), "AWS_CONFIG_FILE:", string(colourReset), os.Getenv("AWS_CONFIG_FILE"))
-
-			// set aws_shared_credentials_file to correct path
-			os.Setenv("AWS_SHARED_CREDENTIALS_FILE", home+"/.aws/cloud-platform/credentials")
-			fmt.Println(string(colourCyan), "AWS_SHARED_CREDENTIALS_FILE:", string(colourReset), os.Getenv("AWS_SHARED_CREDENTIALS_FILE"))
-
-			// set aws_region to correct region
-			os.Setenv("AWS_REGION", "eu-west-2")
-			fmt.Println(string(colourCyan), "AWS_REGION:", string(colourReset), os.Getenv("AWS_REGION"))
-
-			// set aws_default_region to correct region
-			os.Setenv("AWS_DEFAULT_REGION", os.Getenv("AWS_REGION"))
-			fmt.Println(string(colourCyan), "AWS_DEFAULT_REGION:", string(colourReset), os.Getenv("AWS_DEFAULT_REGION"))
-
-			if *arg == "test" {
-				listeksclusters()
-				fmt.Println(string(colourYellow), "Listing EKS Clusters", string(colourReset))
-				fmt.Println("Please select a cluster to use")
-				fmt.Scanln(&arg2)
-				cxtname = arg2
-			} else {
-				cxtname = *arg
-			}
-			// update kube config to the new context if profile is test
-			if p == "test" {
-				// set kubecontext to correct context name
-				fmt.Println(string(colourYellow), "Updating Kube Context")
-				cmd := exec.Command("aws", "eks", "update-kubeconfig", "--name", cxtname)
-				cmd.Run()
-
-				// tf workspace to the cluster name
-				fmt.Println(string(colourYellow), "Updating Terraform Workspace")
-				os.Setenv("TF_WORKSPACE", cxtname)
-				fmt.Println(string(colourCyan), "TF_WORKSPACE:", string(colourReset), os.Getenv("TF_WORKSPACE"))
-
-				// set command line prompt to comtext name
-				os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
-				// start shell with new environment variables
-				syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
-				return
-			} else {
-				// set kubecontext to correct context name
-				fmt.Println(string(colourYellow), "Updating Kube Context")
-				os.Setenv("KUBECONTEXT", cxtname+"."+os.Getenv("CP_ENV"))
-				fmt.Println(string(colourCyan), "KUBECONTEXT:", string(colourReset), os.Getenv("KUBECONTEXT"))
-
-				// tf workspace to the cluster name
-				fmt.Println(string(colourYellow), "Updating Terraform Workspace")
-				os.Setenv("TF_WORKSPACE", cxtname)
-				fmt.Println(string(colourCyan), "TF_WORKSPACE:", string(colourReset), os.Getenv("TF_WORKSPACE"))
-
-				// set command line prompt to comtext name
-				os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
-				// start shell with new environment variables
-				syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
-				return
-			}
-		}
+	// check if profile is live, test, minikube or other
+	if *awsProfile == "live" {
+		LiveEnv()
+	} else if *awsProfile == "test" {
+		TestEnv()
+	} else if *awsProfile == "minikube" {
+		MinikubeEnv()
+	} else if *awsProfile == "namespace" {
+		NamespaceEnv()
+	} else {
+		fmt.Println(string(colourRed), "Please set a profile name to one of the following: live, test, minikube, namespace", string(colourReset))
+		os.Exit(1)
 	}
 }
