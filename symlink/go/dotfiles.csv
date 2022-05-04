@@ -1,6 +1,7 @@
 bash_aliases,.bash_aliases
 bash_functions,.bash_functions
 bashrc,.bashrc
+zshrc,.zshrc
 bash_profile,.bash_profile
 vimrc,.vimrc
 vim,.vim
