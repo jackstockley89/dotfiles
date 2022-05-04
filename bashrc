@@ -1,6 +1,4 @@
 # .bashrc
-autoload -Uz compinit
-compinit
 
 # Set Variables
 
@@ -11,7 +9,6 @@ export REPO="${HOME}/repo"
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 source <(kubectl completion bash)
-source <(kubectl completion zsh)
 
 ## read aliases file
 if [ -f ~/.bash_aliases ]; then
