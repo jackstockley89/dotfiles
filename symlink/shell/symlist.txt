@@ -3,6 +3,7 @@ bash_functions
 bashrc
 zshrc
 bash_profile
+zprofile
 vimrc
 vim
 launch-env-2.scpt
