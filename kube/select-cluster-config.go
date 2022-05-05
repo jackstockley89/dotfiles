@@ -127,6 +127,14 @@ func SetTFWksp(cxtname string) {
 	fmt.Println(string(colourCyan), "TF_WORKSPACE:", string(colourReset), os.Getenv("TF_WORKSPACE"))
 }
 
+// creating terminal
+func SetTerm() {
+	// set command line prompt to comtext name
+	os.Setenv("KUBE_PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
+	// start shell with new environment variables
+	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+}
+
 // sets up test environment for eks cluster
 func TestEnv() {
 	var arg string
@@ -143,10 +151,7 @@ func TestEnv() {
 	cmd.Run()
 	// Set Terraform workspace to the cluster name
 	SetTFWksp(cxtname)
-	// set command line prompt to comtext name
-	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
-	// start shell with new environment variables
-	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+	SetTerm()
 }
 
 // sets up live environment for eks cluster
@@ -161,10 +166,7 @@ func LiveEnv() {
 	fmt.Println(string(colourCyan), "KUBECONTEXT:", string(colourReset), os.Getenv("KUBECONTEXT"))
 	// Set Terraform workspace to the cluster name
 	SetTFWksp(cxtname)
-	// set command line prompt to comtext name
-	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
-	// start shell with new environment variables
-	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+	SetTerm()
 }
 
 //sets up minikube environment for eks cluster
@@ -179,10 +181,7 @@ func MinikubeEnv() {
 	fmt.Println(string(colourYellow), "Starting Minikube")
 	cmd := exec.Command("minikube", "start")
 	cmd.Run()
-	// set command line prompt to comtext name
-	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
-	// start shell with new environment variables
-	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+	SetTerm()
 }
 
 // sets up namespace environment for eks cluster
@@ -201,10 +200,7 @@ func NamespaceEnv() {
 	fmt.Println(string(colourCyan), "KUBECONTEXT:", string(colourReset), os.Getenv("KUBECONTEXT"))
 	// Set Terraform workspace to the cluster name
 	SetTFWksp(cxtname)
-	// set command line prompt to comtext name
-	os.Setenv("PS1", "\\e[1;33m`kubectl config current-context`> \\e[m")
-	// start shell with new environment variables
-	syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
+	SetTerm()
 }
 
 // passes data from flag to environment variables

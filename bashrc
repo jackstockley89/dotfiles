@@ -24,3 +24,5 @@ fi
 if [ -f ~/.env_address ]; then
     . ~/.env_address
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
