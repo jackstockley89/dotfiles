@@ -53,3 +53,27 @@ function setkcfg() {
   echo -e "\n"
   return
 }
+
+function setmakefile() {
+  if [ -f ~/.env_address ]; then
+    source  ~/.env_address
+  else
+    print "404: ~/.zsh/env_address not found."
+  fi
+
+  if [ "${1}" == "hoowdaw" ]; then
+    export KUBECONFIG_S3_BUCKET="cloud-platform-concourse-kubeconfig"
+    export KUBECONFIG_S3_KEY="kubeconfig"
+    export KUBE_CONFIG_PATH="/tmp/kubeconfig"
+    export HOODAW_API_KEY="soopersekrit"
+    export HOODAW_HOST="http://localhost:4567"
+    export AWS_REGION="eu-west-2"
+    export AWS_PROFILE="moj-cp"
+  else 
+    echo -e "\nInvalid makefile enviroment parameter"
+    echo -e "Valid makefile enviroments parameter: hoowdaw"
+    echo -e "Exiting..."
+    echo -e "\n"
+    return
+  fi
+}

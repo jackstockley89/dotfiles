@@ -21,13 +21,6 @@ else
     print "404: ~/.zsh/zshfunctions not found."
 fi
 
-## read function file
-if [ -f ~/.env_address ]; then
-    source  ~/.env_address
-else
-    print "404: ~/.zsh/env_address not found."
-fi
-
 # Set Variables
 export GOPATH="${HOME}/.go"
 export REPO="${HOME}/repo"

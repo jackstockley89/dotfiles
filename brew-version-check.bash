@@ -14,7 +14,7 @@ cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 
 echo -e "\n${bold}${yellow}Current Package Versions${normal}"
-brew list --versions awscli git kubectl vim go tfenv aws-vault cloud-platform-cli helm dagger git-secrets
+brew list --versions awscli git kubectl vim go tfenv aws-vault cloud-platform-cli helm dagger git-secrets commitizen
 echo -e "\n${yellow}Would you like to continue to view outdated package versions?${normal}"
 read -p '[y/n]: ' yesnovar
 
