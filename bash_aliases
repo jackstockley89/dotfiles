@@ -6,7 +6,7 @@ alias hubpr='hub pull-request'
 alias hubi='hub issue'
 
 ## git Aliases
-alias gitc='git commit'
+alias gitc='git cz commit'
 alias gitcl='git clone'
 alias gits='git status'
 alias gita='git add'
@@ -39,9 +39,9 @@ alias tf135='tfenv use 0.13.5; echo "Terraform Version: "; tfenv version-name'
 ## Iterm2 Script Aliases
 alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
-alias launchlaaops='osascript ~/.launch-laaops-terminal.scpt'
-alias launchmodplat='osascript ~/.launch-modplat-terminal.scpt'
 alias pkgver='bash ~/.brew-version-check.bash'
+alias cplive='osascript ~/.cloudplat-live.scpt'
+alias cptest='osascript ~/.clouplat-test.scpt'
 
 
 ## URL Aliases

@@ -8,9 +8,9 @@ vim
 launch-env-2.scpt
 launch-env-3.scpt
 launch-env-4.scpt
-launch-laaops-terminal.scpt
-launch-modplat-terminal.scpt
 launch-laaops-env.bash
+cloudplat-live.scpt
+cloudplat-test.scpt
 environment-collection.bash
 brew-version-check.bash
 select-cluster-config
