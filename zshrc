@@ -25,6 +25,7 @@ fi
 export GOPATH="${HOME}/.go"
 export REPO="${HOME}/repo"
 
+# terminal config 
 if [ -z "$KUBECONFIG" ]; then
     PS1="%~: "
 else
@@ -101,3 +102,4 @@ fi
 [ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  
+

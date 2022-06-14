@@ -26,3 +26,10 @@ if [ -f ~/.env_address ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# terminal config
+if [ -z "$KUBECONFIG" ]; then
+    PS1="%~: "
+else 
+    PS1="$KUBE_PS1"
+fi
