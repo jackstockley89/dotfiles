@@ -41,7 +41,7 @@ alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias pkgver='bash ~/.brew-version-check.bash'
 alias cplive='osascript ~/.cloudplat-live.scpt'
-alias cptest='osascript ~/.clouplat-test.scpt'
+alias cptest='osascript ~/.cloudplat-test.scpt'
 
 
 ## URL Aliases
