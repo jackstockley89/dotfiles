@@ -6,11 +6,11 @@ tell application "iTerm"
         split vertically with default profile
     end tell
     tell first session of current tab of current window
-        set name to "cloud-platform live"
-        write text "scc -p live"
+        set name to "cloud-platform manager"
+        write text "scc -p manager"
     end tell
     tell second session of current tab of current window
-        set name to "cloud-platform live"
+        set name to "cloud-platform manager"
         write text "cd repo"
     end tell
 end tell

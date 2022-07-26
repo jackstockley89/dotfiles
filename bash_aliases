@@ -41,6 +41,7 @@ alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias pkgver='bash ~/.brew-version-check.bash'
 alias cplive='osascript ~/.cloudplat-live.scpt'
+alias cpmgr='osascript ~/.cloudplat-mgr.scpt'
 alias cptest='osascript ~/.cloudplat-test.scpt'
 
 
