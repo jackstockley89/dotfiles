@@ -26,10 +26,11 @@ var (
 	colourReset  = "\033[0m"
 	colourYellow = "\033[33m"
 	colourRed    = "\033[31m"
+	colourGreen  = "\033[32m"
 )
 
 // list eks clusters for aws profile
-func ListEksClusters() {
+func listEksClusters() {
 	profile := os.Getenv("AWS_PROFILE")
 	region := os.Getenv("AWS_REGION")
 	awsconfig := os.Getenv("AWS_CONFIG_FILE")
@@ -76,7 +77,7 @@ func ListEksClusters() {
 }
 
 //setting AWS config
-func SetAWSEnv(ns string) {
+func setAWSEnv(ns string) {
 	awsRegion := "eu-west-2"
 	awsConfig := home + "/.aws/config"
 	awsCreds := home + "/.aws/credentials"
@@ -100,7 +101,7 @@ func SetAWSEnv(ns string) {
 }
 
 // sets Kube config
-func SetKubeEnv(clusterName string) bool {
+func setKubeEnv(clusterName string) bool {
 	fmt.Println(string(colourYellow), "\nSetting Kube Configuration", string(colourReset))
 	// set kubeconfig for live, manager or test
 	// set kube_config_path to kubeconfig
@@ -130,7 +131,7 @@ func SetKubeEnv(clusterName string) bool {
 }
 
 // sets Terraform Workspace
-func SetTFWksp(clusterName string) {
+func setTFWksp(clusterName string) {
 	// tf workspace to the cluster name
 	fmt.Println(string(colourYellow), "\nUpdating Terraform Workspace")
 	os.Setenv("TF_WORKSPACE", clusterName)
@@ -138,7 +139,7 @@ func SetTFWksp(clusterName string) {
 	fmt.Println(string(colourCyan), "TF_WORKSPACE:", string(colourReset), os.Getenv("TF_WORKSPACE"))
 }
 
-func SetTerm() {
+func setTerm() {
 	// set command line prompt to comtext name
 	cmd2 := exec.Command("kubectl", "config", "current-context")
 	out, err := cmd2.CombinedOutput()
@@ -156,7 +157,7 @@ func SetTerm() {
 	}
 }
 
-func Contains(arg string) bool {
+func contains(arg string) bool {
 	for _, cluster := range clusterArray {
 		if cluster == arg {
 			return true
@@ -166,47 +167,47 @@ func Contains(arg string) bool {
 }
 
 // sets up test environment for eks cluster
-func TestEnv() {
+func testEnv() {
 	var arg string
-	SetAWSEnv("moj-cp")
-	ListEksClusters()
+	setAWSEnv("moj-cp")
+	listEksClusters()
 	fmt.Println("Please select a cluster to use:")
 	fmt.Scanln(&arg)
-	if !Contains(arg) {
+	if !contains(arg) {
 		log.Fatal(string(colourRed), "Invalid cluster name entered", string(colourReset))
 		os.Exit(1)
 	}
 	clusterName = arg
-	SetKubeEnv(clusterName)
+	setKubeEnv(clusterName)
 	// set kubecontext to correct context name
 	fmt.Println(string(colourYellow), "Updating Kube Context")
 	cmd := exec.Command("aws", "eks", "update-kubeconfig", "--name", clusterName)
 	cmd.Run()
 	// Set Terraform workspace to the cluster name
-	SetTFWksp(clusterName)
-	SetTerm()
+	setTFWksp(clusterName)
+	setTerm()
 }
 
 // sets up live environment for eks cluster
-func LiveManagerEnv(env string) {
-	SetAWSEnv("moj-cp")
+func liveManagerEnv(env string) {
+	setAWSEnv("moj-cp")
 	clusterName = env
 	if clusterName != "live" && clusterName != "manager" {
 		log.Fatal(string(colourRed), "Cluster name is incorrect", string(colourReset))
 	}
-	SetKubeEnv(clusterName)
+	setKubeEnv(clusterName)
 	// set kubecontext to correct context name
 	fmt.Println(string(colourYellow), "Updating Kube Context")
 	cmd := exec.Command("aws", "eks", "update-kubeconfig", "--name", clusterName)
 	cmd.Run()
 	// Set Terraform workspace to the cluster name
-	SetTFWksp(clusterName)
-	SetTerm()
+	setTFWksp(clusterName)
+	setTerm()
 }
 
 //sets up minikube environment for eks cluster
-func MinikubeEnv(profile string) {
-	SetKubeEnv(clusterName)
+func minikubeEnv(profile string) {
+	setKubeEnv(clusterName)
 	// set kubecontext to correct context name
 	fmt.Println(string(colourYellow), "Updating Kube Context")
 	os.Setenv("KUBECONTEXT", profile)
@@ -215,11 +216,11 @@ func MinikubeEnv(profile string) {
 	fmt.Println(string(colourYellow), "Starting Minikube")
 	cmd := exec.Command("minikube", "start")
 	cmd.Run()
-	SetTerm()
+	setTerm()
 }
 
 // sets up namespace environment for eks cluster
-func NamespaceEnv(profile string) {
+func namespaceEnv(profile string) {
 	var ns string
 	var env string
 	clusterName = "live"
@@ -227,16 +228,16 @@ func NamespaceEnv(profile string) {
 	fmt.Scanln(&ns)
 	fmt.Println("Environment: ")
 	fmt.Scanln(&env)
-	SetKubeEnv(clusterName)
+	setKubeEnv(clusterName)
 	os.Setenv("AWS_PROFILE", ns+"-"+env)
-	SetAWSEnv(ns + "-" + env)
+	setAWSEnv(ns + "-" + env)
 	// set kubecontext to correct context name
 	fmt.Println(string(colourYellow), "Updating Kube Context")
 	os.Setenv("KUBECONTEXT", clusterName+"."+os.Getenv("CP_ENV"))
 	fmt.Println(string(colourCyan), "KUBECONTEXT:", string(colourReset), os.Getenv("KUBECONTEXT"))
 	// Set Terraform workspace to the cluster name
-	SetTFWksp(clusterName)
-	SetTerm()
+	setTFWksp(clusterName)
+	setTerm()
 }
 
 // passes data from flag to environment variables
@@ -255,13 +256,13 @@ func main() {
 
 	// check if profile is live, test, minikube or other
 	if *profile == "live" || *profile == "manager" {
-		LiveManagerEnv(*profile)
+		liveManagerEnv(*profile)
 	} else if *profile == "test" {
-		TestEnv()
+		testEnv()
 	} else if *profile == "minikube" {
-		MinikubeEnv(*profile)
+		minikubeEnv(*profile)
 	} else if *profile == "namespace" {
-		NamespaceEnv(*profile)
+		namespaceEnv(*profile)
 	} else {
 		fmt.Println(string(colourRed), "Please set a profile from to one of the following: live, manager, test, minikube, namespace", string(colourReset))
 		os.Exit(1)
