@@ -34,7 +34,6 @@ fi
 
 ## Kubectl auto complete
 source <(kubectl completion zsh)
-complete -o default -F __start_kubectl k
 
 # Correctly display UTF-8 with combining characters.
 if [[ "$(locale LC_CTYPE)" == "UTF-8" ]]; then
