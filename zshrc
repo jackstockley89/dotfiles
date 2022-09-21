@@ -34,6 +34,7 @@ fi
 
 ## Kubectl auto complete
 source <(kubectl completion zsh)
+complete -o default -F __start_kubectl k
 
 # Correctly display UTF-8 with combining characters.
 if [[ "$(locale LC_CTYPE)" == "UTF-8" ]]; then
@@ -103,3 +104,6 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  
 
+# terraform autocomplete
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/Cellar/tfenv/3.0.0/versions/1.2.6/terraform terraform

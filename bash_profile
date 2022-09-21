@@ -7,3 +7,5 @@ source ~/.bashrc
 PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 export PATH
 
+
+complete -C /usr/local/Cellar/tfenv/3.0.0/versions/1.2.6/terraform terraform
