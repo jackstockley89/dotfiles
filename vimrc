@@ -1,16 +1,32 @@
 call plug#begin()
 if executable('go')
-	" VIM-GO PLUGIN
-	Plug 'fatih/vim-go', {  'tag': 'v1.22', 'do': ':GoUpdateBinaries' }
+  " VIM-GO PLUGIN
+  Plug 'fatih/vim-go', {  'do': ':GoUpdateBinaries'  }
 endif
 
-" TERRAFORM
-" Allow vim-terraform to align settings automatically with Tabularize.
-let g:terraform_align=1
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
+  endif
+endfunction
 
-" Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
-let g:terraform_fold_sections=1
+Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 
-" Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
-let g:terraform_fmt_on_save=1
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 call plug#end()
+
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })

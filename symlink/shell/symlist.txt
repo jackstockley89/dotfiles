@@ -10,6 +10,7 @@ launch-env-3.scpt
 launch-env-4.scpt
 launch-laaops-env.bash
 cloudplat-live.scpt
+cloudplat-live-2.scpt
 cloudplat-mgr.scpt
 cloudplat-test.scpt
 environment-collection.bash

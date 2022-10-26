@@ -16,6 +16,7 @@ alias gitpl='git pull'
 
 ## docker Aliases
 alias dcrc='docker-compose down; docker-compose up --build -d'
+alias dstart='open -a Docker'
 
 ## Commandline Aliases
 alias lsh='ls -ltrh'
@@ -32,6 +33,7 @@ alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias pkgver='bash ~/.brew-version-check.bash'
 alias cplive='osascript ~/.cloudplat-live.scpt'
+alias cplive2='osascript ~/.cloudplat-live-2.scpt'
 alias cpmgr='osascript ~/.cloudplat-mgr.scpt'
 alias cptest='osascript ~/.cloudplat-test.scpt'
 
