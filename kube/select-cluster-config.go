@@ -69,14 +69,14 @@ func listEksClusters() {
 	fmt.Println(string(colourYellow), "\nEKS Test Clusters:", string(colourReset))
 	// exclude live and manager from list
 	for _, cluster := range result.Clusters {
-		if *cluster != "live" && *cluster != "manager" {
+		if *cluster != "live" && *cluster != "manager" && *cluster != "live-2" {
 			clusterArray = append(clusterArray, *cluster)
 			fmt.Println(string(colourCyan), "Cluster:", string(colourReset), *cluster)
 		}
 	}
 }
 
-//setting AWS config
+// setting AWS config
 func setAWSEnv(ns string) {
 	awsRegion := "eu-west-2"
 	awsConfig := home + "/.aws/config"
@@ -111,6 +111,9 @@ func setKubeEnv(clusterName string) bool {
 		kubeConfig = home + "/.kube/" + clusterName + "/config"
 		returnOuput = true
 	} else if clusterName == "manager" {
+		kubeConfig = home + "/.kube/" + clusterName + "/config"
+		returnOuput = true
+	} else if clusterName == "live-2" {
 		kubeConfig = home + "/.kube/" + clusterName + "/config"
 		returnOuput = true
 	} else {
@@ -192,7 +195,7 @@ func testEnv() {
 func liveManagerEnv(env string) {
 	setAWSEnv("moj-cp")
 	clusterName = env
-	if clusterName != "live" && clusterName != "manager" {
+	if clusterName != "live" && clusterName != "manager" && clusterName != "live-2" {
 		log.Fatal(string(colourRed), "Cluster name is incorrect", string(colourReset))
 	}
 	setKubeEnv(clusterName)
@@ -205,7 +208,7 @@ func liveManagerEnv(env string) {
 	setTerm()
 }
 
-//sets up minikube environment for eks cluster
+// sets up minikube environment for eks cluster
 func minikubeEnv(profile string) {
 	setKubeEnv(clusterName)
 	// set kubecontext to correct context name
@@ -248,14 +251,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	arg := flag.String("p", "", "profile for list: live, manager, test, minikube, namespace")
+	arg := flag.String("p", "", "profile for list: live, live-2, manager, test, minikube, namespace")
 	profile := arg
 	home = h
 
 	flag.Parse()
 
 	// check if profile is live, test, minikube or other
-	if *profile == "live" || *profile == "manager" {
+	if *profile == "live" || *profile == "manager" || *profile == "live-2" {
 		liveManagerEnv(*profile)
 	} else if *profile == "test" {
 		testEnv()
