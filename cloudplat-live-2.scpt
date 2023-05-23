@@ -8,9 +8,12 @@ tell application "iTerm"
     tell first session of current tab of current window
         set name to "cloud-platform live-2"
         write text "scc -p live-2"
+        write text "clear"
     end tell
     tell second session of current tab of current window
         set name to "cloud-platform live-2"
+        write text "scc -p live-2"
         write text "cd repo"
+        write text "clear"
     end tell
 end tell

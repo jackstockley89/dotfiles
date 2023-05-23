@@ -7,6 +7,9 @@ autoload -Uz promptinit compinit
 compinit
 promptinit
 
+## PATH
+export PATH=$PATH:~/.local/bin
+
 ## read aliases file
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases

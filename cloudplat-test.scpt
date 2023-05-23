@@ -12,5 +12,6 @@ tell application "iTerm"
     tell second session of current tab of current window
         set name to "cloud-platform test"
         write text "cd repo"
+        write text "scc -p test"
     end tell
 end tell

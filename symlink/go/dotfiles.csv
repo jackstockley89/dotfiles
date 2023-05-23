@@ -5,10 +5,6 @@ zshrc,.zshrc
 bash_profile,.bash_profile
 vimrc,.vimrc
 vim,.vim
-launch-env-2.scpt,.launch-env-2.scpt
-launch-env-3.scpt,.launch-env-3.scpt
-launch-env-4.scpt,.launch-env-4.scpt
-launch-laaops-env.bash,.launch-laaops-env.bash
 cloudplat-live.scpt,.cloudplat-live.scpt
 cloudplat-test.scpt,.cloudplat-test.scpt
 environment-collection.bash,.environment-collection.bash

@@ -144,10 +144,11 @@ func setTFWksp(clusterName string) {
 
 func setTerm() {
 	// set command line prompt to comtext name
+	log.Printf(string(colourYellow), "\nSetting Terminal Context", string(colourReset))
 	cmd2 := exec.Command("kubectl", "config", "current-context")
 	out, err := cmd2.CombinedOutput()
 	if err != nil {
-		log.Fatal(string(colourRed), err, string(colourReset))
+		log.Fatal(string(colourRed), "(setTerm)CombinedOutput: ", err, string(colourReset))
 	}
 	kconfig := string(out)
 	// set KUBE_PS1 to current cluster name
@@ -156,7 +157,7 @@ func setTerm() {
 	// start shell with new environment variables
 	errsys := syscall.Exec(os.Getenv("SHELL"), []string{os.Getenv("SHELL")}, os.Environ())
 	if errsys != nil {
-		log.Fatal(string(colourRed), errsys, string(colourReset))
+		log.Fatal(string(colourRed), "(setTerm)errsys: ", errsys, string(colourReset))
 	}
 }
 
@@ -192,11 +193,11 @@ func testEnv() {
 }
 
 // sets up live environment for eks cluster
-func liveManagerEnv(env string) {
+func liveManagerEnv(profile string) {
 	setAWSEnv("moj-cp")
-	clusterName = env
+	clusterName = profile
 	if clusterName != "live" && clusterName != "manager" && clusterName != "live-2" {
-		log.Fatal(string(colourRed), "Cluster name is incorrect", string(colourReset))
+		log.Fatalf(string(colourRed), "Cluster name is incorrect", string(colourReset))
 	}
 	setKubeEnv(clusterName)
 	// set kubecontext to correct context name
@@ -249,7 +250,7 @@ func namespaceEnv(profile string) {
 func main() {
 	h, err := os.UserHomeDir()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("User Home: %v", err)
 	}
 	arg := flag.String("p", "", "profile for list: live, live-2, manager, test, minikube, namespace")
 	profile := arg
@@ -267,7 +268,6 @@ func main() {
 	} else if *profile == "namespace" {
 		namespaceEnv(*profile)
 	} else {
-		fmt.Println(string(colourRed), "Please set a profile from to one of the following: live, manager, test, minikube, namespace", string(colourReset))
-		os.Exit(1)
+		log.Fatal(string(colourRed), "Please set a profile from to one of the following:\nlive\nlive-2\nmanager\ntest\nminikube\nnamespace", string(colourReset))
 	}
 }

@@ -33,9 +33,13 @@ alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias pkgver='bash ~/.brew-version-check.bash'
 alias cplive='osascript ~/.cloudplat-live.scpt'
+alias cplivem='osascript ~/.cloudplat-live-m.scpt'
 alias cplive2='osascript ~/.cloudplat-live-2.scpt'
+alias cplive2m='osascript ~/.cloudplat-live-2-m.scpt'
 alias cpmgr='osascript ~/.cloudplat-mgr.scpt'
+alias cpmgrm='osascript ~/.cloudplat-mgr-m.scpt'
 alias cptest='osascript ~/.cloudplat-test.scpt'
+alias cptestm='osascript ~/.cloudplat-test-m.scpt'
 
 ## URL Aliases
 alias urlgoogle='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://google.com/''

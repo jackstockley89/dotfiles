@@ -13,6 +13,9 @@ cloudplat-live.scpt
 cloudplat-live-2.scpt
 cloudplat-mgr.scpt
 cloudplat-test.scpt
+cloudplat-live-m.scpt
+cloudplat-mgr-m.scpt
+cloudplat-test-m.scpt
 environment-collection.bash
 brew-version-check.bash
 select-cluster-config
