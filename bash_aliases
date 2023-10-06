@@ -52,3 +52,7 @@ alias urlcpe='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github
 
 ## kubectl Aliases
 alias k=kubectl
+
+## reposiory Aliases
+alias cprepo='cd ~/repos/cloud-platform'
+alias cpjs='cd ~/repos/jackstockley89'
