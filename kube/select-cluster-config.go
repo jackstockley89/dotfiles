@@ -144,7 +144,7 @@ func setTFWksp(clusterName string) {
 
 func setTerm() {
 	// set command line prompt to comtext name
-	log.Printf(string(colourYellow), "\nSetting Terminal Context", string(colourReset))
+	log.Println(string(colourYellow), "\nSetting Terminal Context", string(colourReset))
 	cmd2 := exec.Command("kubectl", "config", "current-context")
 	out, err := cmd2.CombinedOutput()
 	if err != nil {

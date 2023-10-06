@@ -14,7 +14,20 @@ cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 
 echo -e "\n${bold}${yellow}Current Package Versions${normal}"
-brew list --versions awscli git kubectl vim go tfenv cloud-platform-cli helm dagger git-secrets commitizen 
+echo -e "${yellow}AWS${normal}"
+brew list --versions awscli
+echo -e "\n${yellow}Git${normal}"
+brew list --versions git git-secrets commitizen gh
+echo -e "\n${yellow}Kubernetes${normal}"
+brew list --versions kubectl helm helm@2 kind act
+echo -e "\n${yellow}Terraform${normal}"
+brew list --versions tfenv
+echo -e "\n${yellow}Go${normal}"
+brew list --versions go
+echo -e "\n${yellow}Cloud Platform${normal}"
+brew list --versions cloud-platform-cli
+echo -e "\n${yellow}Others${normal}"
+brew list --versions vim dagger
 echo -e "\n${yellow}Would you like to continue to view outdated package versions?${normal}"
 read -p '[y/n]: ' yesnovar
 
@@ -31,6 +44,7 @@ elif [ $yesnovar == y ]; then
 			exit
 		elif [ $yesnovar == y ]; then
 			brew upgrade
+			brew bundle dump --force --file=~/.Brewfile
 		else 
 			echo -e "\n${bold}${red}Unknown Response $yesnovar${normal}"
 			exit 1

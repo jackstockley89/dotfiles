@@ -14,6 +14,7 @@ cloudplat-live-2.scpt
 cloudplat-mgr.scpt
 cloudplat-test.scpt
 cloudplat-live-m.scpt
+cloudplat-live-2-m.scpt
 cloudplat-mgr-m.scpt
 cloudplat-test-m.scpt
 environment-collection.bash

@@ -20,6 +20,7 @@ fi
 ## read function file
 if [ -f ~/.bash_functions ]; then
     source ~/.bash_functions
+    autoload -Uz setawsp setkcfg setmakefile
 else
     print "404: ~/.zsh/zshfunctions not found."
 fi
