@@ -2,7 +2,6 @@
 
 # Aliases
 ## hub Aliases
-alias hubpr='hub pull-request'
 alias hubi='hub issue'
 
 ## git Aliases
@@ -25,9 +24,6 @@ alias lsh='ls -ltrh'
 ## laa cluster select Aliases
 alias scc='~/./.select-cluster-config'
 
-## AWS Account Aliases
-alias modplat='export AWS_CONFIG_FILE=~/.aws/mod-platform/config; echo "AWS_CONFIG_FILE: ${AWS_CONFIG_FILE}"'
-alias laaops='export AWS_CONFIG_FILE=~/.aws/laa-ops/config; echo "AWS_CONFIG_FILE: ${AWS_CONFIG_FILE}"'
 ## Iterm2 Script Aliases
 alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
@@ -56,3 +52,7 @@ alias k=kubectl
 ## reposiory Aliases
 alias cprepo='cd ~/repo/cloud-platform'
 alias jsrepo='cd ~/repo/jackstockley89'
+
+## confing
+alias authlive='cat ~/.properties/live-auth.txt'
+alias authethm='cat ~/.properties/ethm-auth.txt'
