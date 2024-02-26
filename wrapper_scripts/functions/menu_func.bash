@@ -31,6 +31,7 @@ menu_list(){
 overview_menu(){
   working_directory
   overview_arr=(`find ~/.wrapper_scripts/* -maxdepth 1 -type d -exec basename {} \;`)
+  echo -e "\n$(ColorGreen "Directories in ~/.wrapper_scripts:")"
   menu_list "${overview_arr[@]}"
   echo "  $(ColorGreen "e") exit"
   read -p " $(ColorBlue "Enter the number of the directory to enter: ")" directory_number
@@ -55,6 +56,7 @@ overview_menu(){
 script_menu(){
   current_dir=$(pwd)
   script_arr=(`find $current_dir/* -maxdepth 1 -type f -exec basename {} \;`)
+  echo -e "\n$(ColorGreen "Scripts in $current_dir:")"
   menu_list "${script_arr[@]}"
   echo "  $(ColorGreen "m") main menu"
   echo "  $(ColorGreen "e") exit"
@@ -70,10 +72,11 @@ script_menu(){
       exit 0
       ;;
     $script_number)
-      if [[ current_dir =~ "shell" ]]; then
+
+      if [[ $current_dir =~ "shell" ]]; then
         bash $current_dir/${script_arr[$((script_number))]} ;
         script_menu
-      elif [[ current_dir =~ "go" ]]; then
+      elif [[ $current_dir =~ "go" ]]; then
         $current_dir/${script_arr[$((script_number))]} ;
         script_menu
       else
