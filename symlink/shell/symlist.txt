@@ -5,10 +5,6 @@ zshrc
 bash_profile
 vimrc
 vim
-launch-env-2.scpt
-launch-env-3.scpt
-launch-env-4.scpt
-launch-laaops-env.bash
 cloudplat-live.scpt
 cloudplat-live-2.scpt
 cloudplat-mgr.scpt
@@ -17,7 +13,7 @@ cloudplat-live-m.scpt
 cloudplat-live-2-m.scpt
 cloudplat-mgr-m.scpt
 cloudplat-test-m.scpt
-environment-collection.bash
 brew-version-check.bash
 select-cluster-config
 Brewfile
+wrapper_scripts

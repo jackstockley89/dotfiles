@@ -1,9 +1,6 @@
 # .bash_aliases
 
 # Aliases
-## hub Aliases
-alias hubi='hub issue'
-
 ## git Aliases
 alias gitc='git cz commit'
 alias gitcl='git clone'
@@ -19,13 +16,9 @@ alias dstart='open -a Docker'
 
 ## Commandline Aliases
 alias lsh='ls -ltrh'
-## grep Aliases
-
-## laa cluster select Aliases
 alias scc='~/./.select-cluster-config'
 
 ## Iterm2 Script Aliases
-alias envcollect='bash ~/.environment-collection.bash'
 alias launchenv='bash ~/.launch-laaops-env.bash'
 alias pkgver='bash ~/.brew-version-check.bash'
 alias cplive='osascript ~/.cloudplat-live.scpt'
@@ -56,3 +49,6 @@ alias jsrepo='cd ~/repo/jackstockley89'
 ## confing
 alias authlive='cat ~/.properties/live-auth.txt'
 alias authethm='cat ~/.properties/ethm-auth.txt'
+
+## script wrapper
+alias overview='bash ~/.wrapper_scripts/overview.bash'
