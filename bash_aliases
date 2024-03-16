@@ -19,7 +19,6 @@ alias lsh='ls -ltrh'
 alias scc='~/./.select-cluster-config'
 
 ## Iterm2 Script Aliases
-alias launchenv='bash ~/.launch-laaops-env.bash'
 alias pkgver='bash ~/.brew-version-check.bash'
 alias cplive='osascript ~/.cloudplat-live.scpt'
 alias cplivem='osascript ~/.cloudplat-live-m.scpt'
