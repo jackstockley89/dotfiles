@@ -77,7 +77,7 @@ script_menu(){
         bash $current_dir/${script_arr[$((script_number))]} ;
         script_menu
       elif [[ $current_dir =~ "go" ]]; then
-        $current_dir/${script_arr[$((script_number))]} ;
+        go run $current_dir/${script_arr[$((script_number))]} ;
         script_menu
       else
         echo -e $(ColorRed "Invalid option") ;
