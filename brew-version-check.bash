@@ -23,11 +23,11 @@ brew list --versions kubectl helm helm@2 kind act
 echo -e "\n${yellow}Terraform${normal}"
 brew list --versions tfenv
 echo -e "\n${yellow}Go${normal}"
-brew list --versions go
+brew list --versions go goreleaser
 echo -e "\n${yellow}Cloud Platform${normal}"
 brew list --versions cloud-platform-cli
 echo -e "\n${yellow}Others${normal}"
-brew list --versions vim dagger
+brew list --versions vim dagger localstack stern
 echo -e "\n${yellow}Would you like to continue to view outdated package versions?${normal}"
 read -p '[y/n]: ' yesnovar
 
