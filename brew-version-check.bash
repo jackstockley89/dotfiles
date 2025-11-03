@@ -21,7 +21,7 @@ brew list --versions git git-secrets commitizen gh
 echo -e "\n${yellow}Kubernetes${normal}"
 brew list --versions kubectl helm helm@2 kind act
 echo -e "\n${yellow}Terraform${normal}"
-brew list --versions tfenv
+brew list --versions tenv
 echo -e "\n${yellow}Go${normal}"
 brew list --versions go goreleaser
 echo -e "\n${yellow}Cloud Platform${normal}"

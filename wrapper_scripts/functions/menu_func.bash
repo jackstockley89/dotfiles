@@ -30,7 +30,7 @@ menu_list(){
 
 overview_menu(){
   working_directory
-  overview_arr=(`find ~/.wrapper_scripts/* -maxdepth 1 -type d -exec basename {} \;`)
+  overview_arr=(`find ~/.wrapper_scripts/* -maxdepth 1 -type d ! -path ~/.wrapper_scripts/functions -exec basename {} \;`)
   echo -e "\n$(ColorGreen "Directories in ~/.wrapper_scripts:")"
   menu_list "${overview_arr[@]}"
   echo "  $(ColorGreen "e") exit"
@@ -55,7 +55,7 @@ overview_menu(){
 
 script_menu(){
   current_dir=$(pwd)
-  script_arr=(`find $current_dir/* -maxdepth 1 -type f -exec basename {} \;`)
+  script_arr=(`find $current_dir/* -maxdepth 1 -type f ! -path "$current_dir/go.*" -exec basename {} \;`)
   echo -e "\n$(ColorGreen "Scripts in $current_dir:")"
   menu_list "${script_arr[@]}"
   echo "  $(ColorGreen "m") main menu"

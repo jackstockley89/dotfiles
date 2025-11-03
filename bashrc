@@ -4,6 +4,7 @@
 
 export GOPATH="${HOME}/.go"
 export REPO="${HOME}/repo"
+export GPG_TTY=$(tty)
 
 ## Kubectl auto complete
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
@@ -32,4 +33,8 @@ if [ -z "$KUBECONFIG" ]; then
     PS1="%~: "
 else 
     PS1="$KUBE_PS1"
+fi
+
+if command -v ngrok &>/dev/null; then
+    eval "$(ngrok completion)"
 fi

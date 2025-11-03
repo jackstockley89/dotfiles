@@ -17,6 +17,7 @@ alias dstart='open -a Docker'
 ## Commandline Aliases
 alias lsh='ls -ltrh'
 alias scc='~/./.select-cluster-config'
+alias mojcp='aws sso login --profile moj-cp'
 
 ## Iterm2 Script Aliases
 alias pkgver='bash ~/.brew-version-check.bash'
