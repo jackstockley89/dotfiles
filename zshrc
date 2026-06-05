@@ -8,7 +8,7 @@ compinit
 promptinit
 
 ## PATH
-export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/bin:~/.local/sbin:~/bin:~/sbin:/opt/homebrew/bin:/opt/homebrew/sbin
 
 ## read aliases file
 if [ -f ~/.bash_aliases ]; then
@@ -28,6 +28,7 @@ fi
 # Set Variables
 export GOPATH="${HOME}/.go"
 export REPO="${HOME}/repo"
+export GPG_TTY=$(tty)
 
 # terminal config 
 if [ -z "$KUBECONFIG" ]; then
@@ -110,3 +111,4 @@ fi
 # terraform autocomplete
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/Cellar/tfenv/3.0.0/versions/1.2.6/terraform terraform
+export PATH="$PATH:$(go env GOPATH)/bin"

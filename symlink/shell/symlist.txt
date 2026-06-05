@@ -3,6 +3,7 @@ bash_functions
 bashrc
 zshrc
 bash_profile
+zprofile
 vimrc
 vim
 cloudplat-live.scpt
@@ -17,3 +18,4 @@ brew-version-check.bash
 select-cluster-config
 Brewfile
 wrapper_scripts
+select-cluster-env

@@ -9,6 +9,9 @@ alias gita='git add'
 alias gitph='git push'
 alias gitphf='git push --force-with-lease'
 alias gitpl='git pull'
+alias gitrst='git reset --soft $(git merge-base master HEAD)'
+alias gitco='git checkout'
+alias gitbr='git branch'
 
 ## docker Aliases
 alias dcrc='docker-compose down; docker-compose up --build -d'
@@ -17,6 +20,7 @@ alias dstart='open -a Docker'
 ## Commandline Aliases
 alias lsh='ls -ltrh'
 alias scc='~/./.select-cluster-config'
+alias ce='~/./.select-cluster-env'
 alias mojcp='aws sso login --profile moj-cp'
 
 ## Iterm2 Script Aliases
@@ -41,10 +45,12 @@ alias urlcpe='/usr/bin/open -a "/Applications/Google Chrome.app" 'https://github
 
 ## kubectl Aliases
 alias k=kubectl
+alias kpn="bash ~/playground/shell-scripts/kubectl-pods-node-commands.bash"
 
 ## reposiory Aliases
 alias cprepo='cd ~/repo/cloud-platform'
 alias jsrepo='cd ~/repo/jackstockley89'
+alias mprepo='cd ~/repo/modernisation-platform'
 
 ## confing
 alias authlive='cat ~/.properties/live-auth.txt'
